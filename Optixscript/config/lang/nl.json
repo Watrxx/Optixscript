@@ -1,0 +1,245 @@
+﻿{
+  "_meta": {
+    "name": "Dutch",
+    "native_name": "Nederlands",
+    "code": "nl"
+  },
+  "menu": {
+    "game_mode": "Spelmodus",
+    "normal_mode": "Normale modus",
+    "settings": "Instellingen",
+    "optix": "OPTIX",
+    "exit": "Afsluiten"
+  },
+  "loading": {
+    "initializing": "Initialiseren...",
+    "checking_encoding": "Codering controleren...",
+    "loading_config": "Configuratie laden...",
+    "preparing_ui": "Interface voorbereiden...",
+    "done": "Klaar!",
+    "loading": "Laden..."
+  },
+  "settings": {
+    "main": "Instellingen",
+    "customization": "Interface aanpassing",
+    "cleanup": "Troep opruimen",
+    "cleanup_lists": "Opruimlijsten (Processen)",
+    "mini_games": "Minigames",
+    "language": "Taal"
+  },
+  "customization": {
+    "main": "Aanpassing",
+    "color_theme": "Kleurenschema",
+    "color_effects": "Kleureffecten (golf/puls/regenboog)",
+    "custom_rgb": "Aangepaste RGB-kleur",
+    "game_styles": "Spelstijlen",
+    "ascii_animation": "ASCII-animatie",
+    "boot_screen": "Opstartscherm"
+  },
+  "colors": {
+    "select_theme": "Kleurenschema selecteren:",
+    "theme_saved": "Thema 'THEME' opgeslagen!",
+    "theme_applied": "Thema toegepast.",
+    "themes": {
+      "purple": "Paars",
+      "cyberpunk": "Cyberpunk",
+      "forest": "Bos",
+      "matrix": "Matrix",
+      "sunset": "Zonsondergang",
+      "ocean": "Oceaan",
+      "fire": "Vuur",
+      "gold": "Goud",
+      "synthwave": "Synthwave",
+      "mono": "Mono",
+      "blood": "Bloed",
+      "ice": "Ijs"
+    }
+  },
+  "color_effects": {
+    "main": "Kleureffecten",
+    "effect": "Kleureffect",
+    "speed": "Effectsnelheid",
+    "custom_rgb": "Aangepaste RGB-kleur",
+    "reset_rgb": "RGB resetten (thema gebruiken)",
+    "current_effect": "Huidig effect",
+    "speed_range": "Bereik 0.1..3.0, stap 0.1",
+    "rgb_desc": "Stelt vaste kleur in, effecten uitgeschakeld",
+    "preview": "Voorbeeld:",
+    "channel_select": "[Links/Rechts] kanaal  [Omhoog/Omlaag] wijzigen (stap 5, Shift=20)",
+    "rgb_saved": "RGB opgeslagen!",
+    "rgb_reset": "RGB gereset - thema gebruiken.",
+    "speed_saved": "Snelheid opgeslagen!",
+    "effects": {
+      "wave": "Golf (verticale sinus)",
+      "pulse": "Puls (ademhaling)",
+      "flow": "Vloeiende stroom",
+      "rainbow": "Regenboog (HSL over tijd)"
+    }
+  },
+  "styles": {
+    "main": "Stijlinstellingen",
+    "claude_crab": "Claude-krab stijl",
+    "snake": "Slang stijl",
+    "dinosaur": "Dinosauriër stijl",
+    "select_style": "Stijl selecteren voor 'NAME':",
+    "style_saved": "Stijl 'NAME' opgeslagen!"
+  },
+  "boot_screen": {
+    "main": "Opstartscherm",
+    "current_style": "Huidige stijl",
+    "styles": {
+      "full": "Volledig (logo + voortgangsbalk + fasen)",
+      "classic": "Klassiek (alleen voortgangsbalk)",
+      "minimal": "Minimaal (alleen tekst)",
+      "terminals": "Terminals (viruseffect)",
+      "off": "Uit (snelle start)"
+    },
+    "saved": "Stijl 'NAME' opgeslagen!"
+  },
+  "animation": {
+    "main": "ASCII-animatie",
+    "select": "ASCII-animatie selecteren (achtergrond voor games):",
+    "saved": "Animatie 'NAME' opgeslagen!",
+    "effects": {
+      "off": "Uit",
+      "stars": "Sterren",
+      "wave": "Golf",
+      "spiral": "Spiraal",
+      "matrix": "Matrix",
+      "rain": "Regen",
+      "pulse": "Puls"
+    }
+  },
+  "games": {
+    "main": "Minigames",
+    "snake": "Slang",
+    "dinosaur": "Dinosauriër",
+    "claude_crab": "Claude-krab",
+    "score": "Score",
+    "game_over": "SPEL VOORBIJ",
+    "your_score": "Jouw score",
+    "press_any_key": "Druk op een willekeurige toets om af te sluiten..."
+  },
+  "snake": {
+    "score": "Score"
+  },
+  "dinosaur": {
+    "controls": "Bediening:",
+    "move": "Links/Rechts of A/D: Bewegen",
+    "fire": "Spatie: Springen"
+  },
+  "cleanup": {
+    "main": "Troep opruimen",
+    "starting": "Troep opruimen starten...",
+    "user_temp": "Gebruiker TEMP",
+    "system_temp": "Systeem TEMP",
+    "prefetch": "Prefetch",
+    "dns_cache": "DNS-cache",
+    "recycle_bin": "Prullenbak",
+    "skipped": "pad ontoegankelijk, overgeslagen.",
+    "cleaned_files": "bestanden verwijderd",
+    "freed_mb": "MB vrijgemaakt",
+    "cleared": "geleegd.",
+    "total_deleted": "Totaal verwijderd",
+    "total_freed": "MB vrijgemaakt",
+    "press_enter": "Druk op Enter om terug te keren...",
+    "cleanmgr": "Disk Cleanup (cleanmgr) - ALL drives - all categories",
+    "select_none": "[N] Clear selection",
+    "select_all": "[A] Select all",
+    "cancel_hint": "[Esc] Cancel",
+    "nothing_selected": "Nothing selected, nothing to clean.",
+    "start_hint": "[Enter] Start cleaning",
+    "select_title": "Select what to clean (Space - toggle, A - all, N - clear):",
+    "cancelled": "Cleanup cancelled.",
+    "free_gb": "free FREE GB",
+    "drives_title": "Select drives to clean (Space - toggle, A - all, N - clear):",
+    "drive_skipped": "path is on DRIVE;",
+    "system_marker": "System",
+    "drive_unselected": "drive not selected",
+    "cleanmgr_drive_skip": "system drive not selected, skipped.",
+    "summary_after": "Memory after cleanup:",
+    "free": "Free",
+    "ram": "RAM",
+    "used": "Used"
+  },
+  "process_manager": {
+    "title": "Procesbeheer",
+    "loading": "Processen laden en analyseren...",
+    "colors_legend": "Kleuren: Rood-Kritiek, DarkCyan-Systeem, Blauw-Microsoft, Wit-Anders",
+    "controls": "Bediening: [Omhoog/Omlaag/PgUp/PgDn] Navigeren | [Enter] Selecteren | [P] Uitgever",
+    "save_selected": "[9] Selectie opslaan",
+    "exit": "[Esc] Afsluiten",
+    "critical_warning": "WAARSCHUWING",
+    "critical_msg": "Proces 'NAME' is kritiek voor het systeem. Dit proces selecteren voor enige lijst is geblokkeerd.",
+    "press_enter": "Druk op Enter om terug te keren...",
+    "save_menu": {
+      "add_to": "SELECTED_COUNT geselecteerde processen toevoegen aan?",
+      "blacklist": "Blacklist (beëindigen)",
+      "whitelist": "Whitelist (nooit aanraken)",
+      "restartable": "Herstartbaar (later herstellen)",
+      "success": "Processen succesvol toegevoegd aan FILENAME!",
+      "error_critical": "FOUT: U probeert kritiek proces 'NAME' toe te voegen aan de beëindigingslijst. Deze actie is geblokkeerd om het systeem te beschermen.",
+      "press_enter": "Druk op Enter om terug te keren..."
+    }
+  },
+  "game_mode": {
+    "activating": "Spelmodus activeren...",
+    "stopping_services": "Doelservices stoppen...",
+    "service_stopped": "Service 'NAME' gestopt.",
+    "saving_processes": "Herstartbare processen opslaan...",
+    "process_found": "Proces 'NAME' gevonden, pad opgeslagen.",
+    "nothing_to_kill": "Niets te beëindigen.",
+    "killing_processes": "Alle processen beëindigen (behalve kritiek en whitelist)...",
+    "terminated": "Beëindigd: COUNT processen.",
+    "auto_tracking": "Automatisch volgen gestart.",
+    "activated": "Spelmodus geactiveerd!",
+    "press_enter": "Druk op Enter om terug te keren naar menu..."
+  },
+  "normal_mode": {
+    "deactivating": "Spelmodus deactiveren en herstellen...",
+    "tracking_stopped": "Achtergrondvolgen gestopt.",
+    "not_active": "Spelmodus was niet actief.",
+    "restoring_processes": "Opgeslagen processen herstellen...",
+    "launching": "'NAME' starten...",
+    "restoring_services": "Gestopte services herstellen...",
+    "service_started": "Service 'NAME' gestart.",
+    "normal_restored": "Normale modus hersteld.",
+    "press_enter": "Druk op Enter om terug te keren naar menu..."
+  },
+  "optix": {
+    "not_found_title": "Bestand niet gevonden!",
+    "not_found_msg": "Bestand FILE bestaat niet!",
+    "not_found_needed": "Het is nodig voor stabiele werking van OPTIX.",
+    "option_show": "Bestand tonen in Verkenner",
+    "option_create": "FILE maken in deze map",
+    "option_back": "Terug naar menu",
+    "explorer_opened": "Verkenner geopend. Druk op Enter...",
+    "created": "Bestand aangemaakt!",
+    "path": "Pad",
+    "press_enter": "Druk op Enter...",
+    "launching": "FILE starten in nieuw venster. Terug naar menu...",
+    "dev_notice": "Sectie 'OPTIX' is in ontwikkeling."
+  },
+  "common": {
+    "enter_to_return": "Druk op Enter om terug te keren naar menu...",
+    "esc_to_return": "(Esc om terug te keren)",
+    "enter_save_esc_cancel": "(Enter - opslaan, Esc - annuleren)",
+    "enter_confirm_esc_cancel": "(Enter - bevestigen, Esc - annuleren)",
+    "enter_next_esc_back": "(Enter - volgende, Esc - terug)",
+    "choose": "Kies (1-4):",
+    "yes": "Ja",
+    "no": "Nee",
+    "ok": "OK",
+    "error": "FOUT",
+    "info": "INFO",
+    "warning": "WAARSCHUWING"
+  },
+  "exit": {
+    "closing": "Afsluiten over 3 seconden...",
+    "thanks": "Bedankt voor het gebruiken van OPTIX!",
+    "goodbye": "Tot ziens!"
+  },
+  "footer": {
+    "navigation": "[v/^] of [pijlen] - selecteren   |   [Enter] - bevestigen   |   [Esc] - afsluiten"
+  }
+}

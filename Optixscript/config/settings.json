@@ -1,0 +1,206 @@
+{
+    "color_theme":  "purple",
+    "color_effect":  "wave",
+    "effect_speed":  0.4,
+    "custom_r":  -1,
+    "custom_g":  -1,
+    "custom_b":  -1,
+    "boot_style":  "full",
+    "animation_style":  "off",
+    "terminals_duration":  3,
+    "language":  "en",
+    "color_palettes":  {
+                           "purple":  {
+                                          "base_r":  120,
+                                          "base_g":  0,
+                                          "base_b":  200,
+                                          "factor_r":  135,
+                                          "factor_g":  255,
+                                          "factor_b":  55
+                                      },
+                           "cyberpunk":  {
+                                             "base_r":  0,
+                                             "base_g":  150,
+                                             "base_b":  255,
+                                             "factor_r":  255,
+                                             "factor_g":  105,
+                                             "factor_b":  0
+                                         },
+                           "forest":  {
+                                          "base_r":  0,
+                                          "base_g":  100,
+                                          "base_b":  20,
+                                          "factor_r":  150,
+                                          "factor_g":  155,
+                                          "factor_b":  100
+                                      },
+                           "matrix":  {
+                                          "base_r":  0,
+                                          "base_g":  40,
+                                          "base_b":  0,
+                                          "factor_r":  40,
+                                          "factor_g":  215,
+                                          "factor_b":  40
+                                      },
+                           "sunset":  {
+                                          "base_r":  180,
+                                          "base_g":  40,
+                                          "base_b":  0,
+                                          "factor_r":  75,
+                                          "factor_g":  140,
+                                          "factor_b":  120
+                                      },
+                           "ocean":  {
+                                         "base_r":  0,
+                                         "base_g":  60,
+                                         "base_b":  120,
+                                         "factor_r":  40,
+                                         "factor_g":  150,
+                                         "factor_b":  135
+                                     },
+                           "fire":  {
+                                        "base_r":  150,
+                                        "base_g":  10,
+                                        "base_b":  0,
+                                        "factor_r":  105,
+                                        "factor_g":  150,
+                                        "factor_b":  30
+                                    },
+                           "gold":  {
+                                        "base_r":  90,
+                                        "base_g":  70,
+                                        "base_b":  0,
+                                        "factor_r":  165,
+                                        "factor_g":  150,
+                                        "factor_b":  60
+                                    },
+                           "synthwave":  {
+                                             "base_r":  120,
+                                             "base_g":  0,
+                                             "base_b":  120,
+                                             "factor_r":  135,
+                                             "factor_g":  80,
+                                             "factor_b":  135
+                                         },
+                           "mono":  {
+                                        "base_r":  60,
+                                        "base_g":  60,
+                                        "base_b":  60,
+                                        "factor_r":  195,
+                                        "factor_g":  195,
+                                        "factor_b":  195
+                                    },
+                           "blood":  {
+                                         "base_r":  80,
+                                         "base_g":  0,
+                                         "base_b":  0,
+                                         "factor_r":  175,
+                                         "factor_g":  40,
+                                         "factor_b":  40
+                                     },
+                           "ice":  {
+                                       "base_r":  30,
+                                       "base_g":  80,
+                                       "base_b":  140,
+                                       "factor_r":  90,
+                                       "factor_g":  150,
+                                       "factor_b":  115
+                                   }
+                       },
+    "game_styles":  {
+                        "claude_crab":  {
+                                            "current":  "claude",
+                                            "styles":  {
+                                                           "claude":  [
+                                                                          " ▐▛███▛█   ",
+                                                                          "▝▜██████▀  ",
+                                                                          "  ▝▝ ▝▝"
+                                                                      ],
+                                                           "gemini":  [
+                                                                          "+++           ",
+                                                                          "         --=++++*        ",
+                                                                          "           =++"
+                                                                      ],
+                                                           "gpt":  [
+                                                                       " .-\u0027\u0027\u0027-. ",
+                                                                       "(  o o  )",
+                                                                       " \u0027-...-\u0027 "
+                                                                   ],
+                                                           "grok":  [
+                                                                        " /\\_/\\ ",
+                                                                        "( o.o )",
+                                                                        " \u003e ^ \u003c "
+                                                                    ],
+                                                           "llama":  [
+                                                                         "  /\\__/\\  ",
+                                                                         " ( o  o ) ",
+                                                                         "  \\ -- /  "
+                                                                     ],
+                                                           "ufo":  [
+                                                                       " ______ ",
+                                                                       "(______)",
+                                                                       "   ||   "
+                                                                   ]
+                                                       }
+                                        },
+                        "dinosaur":  {
+                                         "current":  "bunny",
+                                         "styles":  {
+                                                        "default":  [
+                                                                        "   __",
+                                                                        " /o_)"
+                                                                    ],
+                                                        "bunny":  [
+                                                                      " ()() ",
+                                                                      " (o.o)"
+                                                                  ],
+                                                        "frog":  [
+                                                                     " (o.o) ",
+                                                                     "\u003c(   )\u003e"
+                                                                 ],
+                                                        "cat":  [
+                                                                    " /\\_/\\ ",
+                                                                    "( o.o )"
+                                                                ],
+                                                        "duck":  [
+                                                                     "  __ ",
+                                                                     "\u003c(o )"
+                                                                 ],
+                                                        "rex":  [
+                                                                    "    __  ",
+                                                                    " ___/o |",
+                                                                    "\u0027-\u0027   -\u0027"
+                                                                ]
+                                                    }
+                                     },
+                        "snake":  {
+                                      "current":  "classic",
+                                      "styles":  {
+                                                     "classic":  {
+                                                                     "head":  "@",
+                                                                     "body":  "#",
+                                                                     "food":  "*",
+                                                                     "color":  "Green"
+                                                                 },
+                                                     "neon":  {
+                                                                  "head":  "◆",
+                                                                  "body":  "◇",
+                                                                  "food":  "✦",
+                                                                  "color":  "Cyan"
+                                                              },
+                                                     "blocks":  {
+                                                                    "head":  "#",
+                                                                    "body":  "▓",
+                                                                    "food":  "♦",
+                                                                    "color":  "Magenta"
+                                                                },
+                                                     "retro":  {
+                                                                   "head":  "0",
+                                                                   "body":  "o",
+                                                                   "food":  "+",
+                                                                   "color":  "Yellow"
+                                                               }
+                                                 }
+                                  }
+                    }
+}

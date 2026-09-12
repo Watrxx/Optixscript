@@ -1,0 +1,245 @@
+﻿{
+  "_meta": {
+    "name": "Japanese",
+    "native_name": "日本語",
+    "code": "ja"
+  },
+  "menu": {
+    "game_mode": "ゲームモード",
+    "normal_mode": "ノーマルモード",
+    "settings": "設定",
+    "optix": "OPTIX",
+    "exit": "終了"
+  },
+  "loading": {
+    "initializing": "初期化中...",
+    "checking_encoding": "エンコーディング確認中...",
+    "loading_config": "設定を読み込み中...",
+    "preparing_ui": "インターフェース準備中...",
+    "done": "完了！",
+    "loading": "読み込み中..."
+  },
+  "settings": {
+    "main": "設定",
+    "customization": "インターフェースカスタマイズ",
+    "cleanup": "ゴミファイル清理",
+    "cleanup_lists": "清理リスト（プロセス）",
+    "mini_games": "ミニゲーム",
+    "language": "言語"
+  },
+  "customization": {
+    "main": "カスタマイズ",
+    "color_theme": "カラースキーム",
+    "color_effects": "カラー効果（波/パルス/レインボー）",
+    "custom_rgb": "カスタムRGBカラー",
+    "game_styles": "ゲームスタイル",
+    "ascii_animation": "ASCIIアニメーション",
+    "boot_screen": "起動画面"
+  },
+  "colors": {
+    "select_theme": "カラースキームを選択：",
+    "theme_saved": "テーマ 'THEME' を保存しました！",
+    "theme_applied": "テーマを適用しました。",
+    "themes": {
+      "purple": "紫",
+      "cyberpunk": "サイバー朋克",
+      "forest": "森",
+      "matrix": "マトリックス",
+      "sunset": "夕焼け",
+      "ocean": "海",
+      "fire": "炎",
+      "gold": "金",
+      "synthwave": "シンセウェーブ",
+      "mono": "モノクロ",
+      "blood": "血",
+      "ice": "氷"
+    }
+  },
+  "color_effects": {
+    "main": "カラー効果",
+    "effect": "カラー効果",
+    "speed": "効果速度",
+    "custom_rgb": "カスタムRGBカラー",
+    "reset_rgb": "RGBをリセット（テーマを使用）",
+    "current_effect": "現在の効果",
+    "speed_range": "範囲 0.1..3.0、ステップ 0.1",
+    "rgb_desc": "固定色を設定、効果は無効",
+    "preview": "プレビュー：",
+    "channel_select": "[左/右] チャンネル  [上/下] 変更（ステップ5、Shift=20）",
+    "rgb_saved": "RGBを保存しました！",
+    "rgb_reset": "RGBをリセット - テーマを使用中。",
+    "speed_saved": "速度を保存しました！",
+    "effects": {
+      "wave": "波（垂直サイン波）",
+      "pulse": "パルス（呼吸）",
+      "flow": "スムーズフロー",
+      "rainbow": "レインボー（時間によるHSL）"
+    }
+  },
+  "styles": {
+    "main": "スタイル設定",
+    "claude_crab": "Claude蟹スタイル",
+    "snake": "ヘビスタイル",
+    "dinosaur": "恐竜スタイル",
+    "select_style": "'NAME' のスタイルを選択：",
+    "style_saved": "スタイル 'NAME' を保存しました！"
+  },
+  "boot_screen": {
+    "main": "起動画面",
+    "current_style": "現在のスタイル",
+    "styles": {
+      "full": "フル（ロゴ + 進捗バー + ステージ）",
+      "classic": "クラシック（進捗バーのみ）",
+      "minimal": "ミニマム（テキストのみ）",
+      "terminals": "ターミナル（ウイルス効果）",
+      "off": "オフ（高速起動）"
+    },
+    "saved": "スタイル 'NAME' を保存しました！"
+  },
+  "animation": {
+    "main": "ASCIIアニメーション",
+    "select": "ASCIIアニメーションを選択（ゲームの背景）：",
+    "saved": "アニメーション 'NAME' を保存しました！",
+    "effects": {
+      "off": "オフ",
+      "stars": "星",
+      "wave": "波",
+      "spiral": "スパイラル",
+      "matrix": "マトリックス",
+      "rain": "雨",
+      "pulse": "パルス"
+    }
+  },
+  "games": {
+    "main": "ミニゲーム",
+    "snake": "スネーク",
+    "dinosaur": "ダイナソー",
+    "claude_crab": "Claude蟹",
+    "score": "スコア",
+    "game_over": "ゲームオーバー",
+    "your_score": "あなたのスコア",
+    "press_any_key": "何かキーを押して終了..."
+  },
+  "snake": {
+    "score": "スコア"
+  },
+  "dinosaur": {
+    "controls": "操作：",
+    "move": "左/右またはA/D：移動",
+    "fire": "スペース：ジャンプ"
+  },
+  "cleanup": {
+    "main": "ゴミファイル清理",
+    "starting": "ゴミファイル清理を開始...",
+    "user_temp": "ユーザーTEMP",
+    "system_temp": "システムTEMP",
+    "prefetch": "プリフェッチ",
+    "dns_cache": "DNSキャッシュ",
+    "recycle_bin": "ごみ箱",
+    "skipped": "パスにアクセスできません、スキップ。",
+    "cleaned_files": "ファイル削除",
+    "freed_mb": "MB解放",
+    "cleared": "空にしました。",
+    "total_deleted": "合計削除",
+    "total_freed": "MB解放",
+    "press_enter": "Enterを押して戻る...",
+    "cleanmgr": "Disk Cleanup (cleanmgr) - ALL drives - all categories",
+    "select_none": "[N] Clear selection",
+    "select_all": "[A] Select all",
+    "cancel_hint": "[Esc] Cancel",
+    "nothing_selected": "Nothing selected, nothing to clean.",
+    "start_hint": "[Enter] Start cleaning",
+    "select_title": "Select what to clean (Space - toggle, A - all, N - clear):",
+    "cancelled": "Cleanup cancelled.",
+    "free_gb": "free FREE GB",
+    "drives_title": "Select drives to clean (Space - toggle, A - all, N - clear):",
+    "drive_skipped": "path is on DRIVE;",
+    "system_marker": "System",
+    "drive_unselected": "drive not selected",
+    "cleanmgr_drive_skip": "system drive not selected, skipped.",
+    "summary_after": "Memory after cleanup:",
+    "free": "Free",
+    "ram": "RAM",
+    "used": "Used"
+  },
+  "process_manager": {
+    "title": "プロセスマネージャー",
+    "loading": "プロセスを読み込んで分析中...",
+    "colors_legend": "色：赤-重要、DarkCyan-システム、青-Microsoft、白-その他",
+    "controls": "操作：[上/下/PgUp/PgDn] ナビゲート | [Enter] 選択 | [P] 発行元",
+    "save_selected": "[9] 選択を保存",
+    "exit": "[Esc] 終了",
+    "critical_warning": "警告",
+    "critical_msg": "プロセス 'NAME' はシステムに重要です。このプロセスをリストに追加することはブロックされています。",
+    "press_enter": "Enterを押して戻る...",
+    "save_menu": {
+      "add_to": "選択した SELECTED_COUNT 個のプロセスを追加先：",
+      "blacklist": "ブラックリスト（終了）",
+      "whitelist": "ホワイトリスト（触らない）",
+      "restartable": "再起動可能（後で復元）",
+      "success": "プロセスを FILENAME に正常に追加しました！",
+      "error_critical": "エラー：重要なプロセス 'NAME' を終了リストに追加しようとしました。この操作はシステム保護のためにブロックされています。",
+      "press_enter": "Enterを押して戻る..."
+    }
+  },
+  "game_mode": {
+    "activating": "ゲームモードをアクティブ化中...",
+    "stopping_services": "対象サービスを停止中...",
+    "service_stopped": "サービス 'NAME' を停止しました。",
+    "saving_processes": "再起動可能なプロセスを保存中...",
+    "process_found": "プロセス 'NAME' が見つかりました、パスを保存。",
+    "nothing_to_kill": "終了するものがありません。",
+    "killing_processes": "すべてのプロセスを終了中（重要とwhitelist以外）...",
+    "terminated": "終了：COUNT 個のプロセス。",
+    "auto_tracking": "自動追跡を開始しました。",
+    "activated": "ゲームモードがアクティブになりました！",
+    "press_enter": "Enterを押してメニューに戻る..."
+  },
+  "normal_mode": {
+    "deactivating": "ゲームモードを無効化して復元中...",
+    "tracking_stopped": "バックグラウンド追跡を停止しました。",
+    "not_active": "ゲームモードはアクティブではありませんでした。",
+    "restoring_processes": "保存したプロセスを復元中...",
+    "launching": "'NAME' を起動中...",
+    "restoring_services": "停止したサービスを復元中...",
+    "service_started": "サービス 'NAME' を開始しました。",
+    "normal_restored": "ノーマルモードを復元しました。",
+    "press_enter": "Enterを押してメニューに戻る..."
+  },
+  "optix": {
+    "not_found_title": "ファイルが見つかりません！",
+    "not_found_msg": "ファイル FILE は存在しません！",
+    "not_found_needed": "OPTIXの安定した動作に必要です。",
+    "option_show": "エクスプローラーでファイルを表示",
+    "option_create": "このフォルダに FILE を作成",
+    "option_back": "メニューに戻る",
+    "explorer_opened": "エクスプローラーを開きました。Enterを押す...",
+    "created": "ファイルを作成しました！",
+    "path": "パス",
+    "press_enter": "Enterを押す...",
+    "launching": "新しいウィンドウで FILE を起動中。メニューに戻る...",
+    "dev_notice": "'OPTIX' セクションは開発中です。"
+  },
+  "common": {
+    "enter_to_return": "Enterを押してメニューに戻る...",
+    "esc_to_return": "（Escで戻る）",
+    "enter_save_esc_cancel": "（Enter - 保存、Esc - キャンセル）",
+    "enter_confirm_esc_cancel": "（Enter - 確認、Esc - キャンセル）",
+    "enter_next_esc_back": "（Enter - 次へ、Esc - 戻る）",
+    "choose": "選択（1-4）：",
+    "yes": "はい",
+    "no": "いいえ",
+    "ok": "OK",
+    "error": "エラー",
+    "info": "情報",
+    "warning": "警告"
+  },
+  "exit": {
+    "closing": "3秒後に閉じます...",
+    "thanks": "OPTIXをご使用いただきありがとうございます！",
+    "goodbye": "さようなら！"
+  },
+  "footer": {
+    "navigation": "[v/^] または [矢印] - 選択   |   [Enter] - 確認   |   [Esc] - 終了"
+  }
+}

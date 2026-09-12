@@ -1,0 +1,245 @@
+﻿{
+  "_meta": {
+    "name": "Arabic",
+    "native_name": "العربية",
+    "code": "ar"
+  },
+  "menu": {
+    "game_mode": "وضع اللعب",
+    "normal_mode": "الوضع العادي",
+    "settings": "الإعدادات",
+    "optix": "OPTIX",
+    "exit": "خروج"
+  },
+  "loading": {
+    "initializing": "جاري التهيئة...",
+    "checking_encoding": "جاري التحقق من الترميز...",
+    "loading_config": "جاري تحميل الإعدادات...",
+    "preparing_ui": "جاري تحضير الواجهة...",
+    "done": "تم!",
+    "loading": "جاري التحميل..."
+  },
+  "settings": {
+    "main": "الإعدادات",
+    "customization": "تخصيص الواجهة",
+    "cleanup": "تنظيف الملفات المؤقتة",
+    "cleanup_lists": "قوائم التنظيف (العمليات)",
+    "mini_games": "الألعاب المصغرة",
+    "language": "اللغة"
+  },
+  "customization": {
+    "main": "التخصيص",
+    "color_theme": "مخطط الألوان",
+    "color_effects": "تأثيرات اللون (موجة/نبض/قوس قزح)",
+    "custom_rgb": "لون RGB مخصص",
+    "game_styles": "أنماط الألعاب",
+    "ascii_animation": "رسوم ASCII المتحركة",
+    "boot_screen": "شاشة البدء"
+  },
+  "colors": {
+    "select_theme": "اختر مخطط الألوان:",
+    "theme_saved": "تم حفظ السمة 'THEME'!",
+    "theme_applied": "تم تطبيق السمة.",
+    "themes": {
+      "purple": "بنفسجي",
+      "cyberpunk": "سايبر بانك",
+      "forest": "غابة",
+      "matrix": "المصفوفة",
+      "sunset": "غروب",
+      "ocean": "محيط",
+      "fire": "نار",
+      "gold": "ذهبي",
+      "synthwave": "ساينثويف",
+      "mono": "أحادي",
+      "blood": "دم",
+      "ice": "ثلج"
+    }
+  },
+  "color_effects": {
+    "main": "تأثيرات اللون",
+    "effect": "تأثير اللون",
+    "speed": "سرعة التأثير",
+    "custom_rgb": "لون RGB مخصص",
+    "reset_rgb": "إعادة تعيين RGB (استخدام السمة)",
+    "current_effect": "التأثير الحالي",
+    "speed_range": "النطاق 0.1..3.0، الخطوة 0.1",
+    "rgb_desc": "ضبط لون ثابت، التأثيرات معطلة",
+    "preview": "معاينة:",
+    "channel_select": "[يسار/يمين] القناة  [أعلى/أسفل] تغيير (الخطوة 5، Shift=20)",
+    "rgb_saved": "تم حفظ RGB!",
+    "rgb_reset": "تم إعادة تعيين RGB - استخدام السمة.",
+    "speed_saved": "تم حفظ السرعة!",
+    "effects": {
+      "wave": "موجة (جيب عمودي)",
+      "pulse": "نبض (تنفس)",
+      "flow": "تدفق سلس",
+      "rainbow": "قوس قزح (HSL حسب الوقت)"
+    }
+  },
+  "styles": {
+    "main": "إعدادات النمط",
+    "claude_crab": "نمط سرطان Claude",
+    "snake": "نمط الثعبان",
+    "dinosaur": "نمط الديناصور",
+    "select_style": "اختر نمط 'NAME':",
+    "style_saved": "تم حفظ النمط 'NAME'!"
+  },
+  "boot_screen": {
+    "main": "شاشة البدء",
+    "current_style": "النمط الحالي",
+    "styles": {
+      "full": "كامل (شعار + شريط التقدم + المراحل)",
+      "classic": "كلاسيكي (شريط التقدم فقط)",
+      "minimal": "مminimal (نص فقط)",
+      "terminals": "طرفية (تأثير فيروس)",
+      "off": "إيقاف (بدء سريع)"
+    },
+    "saved": "تم حفظ النمط 'NAME'!"
+  },
+  "animation": {
+    "main": "رسوم ASCII المتحركة",
+    "select": "اختر رسوم ASCII المتحركة (خلفية للألعاب):",
+    "saved": "تم حفظ الرسوم 'NAME'!",
+    "effects": {
+      "off": "إيقاف",
+      "stars": "نجوم",
+      "wave": "موجة",
+      "spiral": "حلزوني",
+      "matrix": "مصفوفة",
+      "rain": "مطر",
+      "pulse": "نبض"
+    }
+  },
+  "games": {
+    "main": "الألعاب المصغرة",
+    "snake": "الثعبان",
+    "dinosaur": "الديناصور",
+    "claude_crab": "سرطان Claude",
+    "score": "النتيجة",
+    "game_over": "انتهت اللعبة",
+    "your_score": "نتيجتك",
+    "press_any_key": "اضغط أي مفتاح للخروج..."
+  },
+  "snake": {
+    "score": "النتيجة"
+  },
+  "dinosaur": {
+    "controls": "الضوابط:",
+    "move": "يسار/يمين أو A/D: تحريك",
+    "fire": "مسافة: قفز"
+  },
+  "cleanup": {
+    "main": "تنظيف الملفات المؤقتة",
+    "starting": "بدء تنظيف الملفات المؤقتة...",
+    "user_temp": "TEMP المستخدم",
+    "system_temp": "TEMP النظام",
+    "prefetch": "Prefetch",
+    "dns_cache": "ذاكرة DNS المؤقتة",
+    "recycle_bin": "سلة المحذوفات",
+    "skipped": "المسار غير صالح، تخطي.",
+    "cleaned_files": "ملفات محذوفة",
+    "freed_mb": "ميجابايت تم تحريرها",
+    "cleared": "تم إفراغها.",
+    "total_deleted": "المجموع المحذوف",
+    "total_freed": "ميجابايت تم تحريرها",
+    "press_enter": "اضغط Enter للعودة...",
+    "cleanmgr": "Disk Cleanup (cleanmgr) - ALL drives - all categories",
+    "select_none": "[N] Clear selection",
+    "select_all": "[A] Select all",
+    "cancel_hint": "[Esc] Cancel",
+    "nothing_selected": "Nothing selected, nothing to clean.",
+    "start_hint": "[Enter] Start cleaning",
+    "select_title": "Select what to clean (Space - toggle, A - all, N - clear):",
+    "cancelled": "Cleanup cancelled.",
+    "free_gb": "free FREE GB",
+    "drives_title": "Select drives to clean (Space - toggle, A - all, N - clear):",
+    "drive_skipped": "path is on DRIVE;",
+    "system_marker": "System",
+    "drive_unselected": "drive not selected",
+    "cleanmgr_drive_skip": "system drive not selected, skipped.",
+    "summary_after": "Memory after cleanup:",
+    "free": "Free",
+    "ram": "RAM",
+    "used": "Used"
+  },
+  "process_manager": {
+    "title": "مدير العمليات",
+    "loading": "جاري تحميل وتحليل العمليات...",
+    "colors_legend": "الألوان: أحمر-حرجة، DarkCyan-نظام، أزرق-Microsoft، أبيض-أخرى",
+    "controls": "الضوابط: [أعلى/أسفل/PgUp/PgDn] تنقل | [Enter] تحديد | [P] الناشر",
+    "save_selected": "[9] حفظ المحدد",
+    "exit": "[Esc] خروج",
+    "critical_warning": "تحذير",
+    "critical_msg": "العملية 'NAME' حرجة للنظام. تحديد هذه العملية لأي قائمة محظور.",
+    "press_enter": "اضغط Enter للعودة...",
+    "save_menu": {
+      "add_to": "إضافة SELECTED_COUNT عمليات محددة إلى؟",
+      "blacklist": "القائمة السوداء (إنهاء)",
+      "whitelist": "القائمة البيضاء (عدم اللمس)",
+      "restartable": "قابلة لإعادة التشغيل (استعادة لاحقاً)",
+      "success": "تمت إضافة العمليات إلى FILENAME بنجاح!",
+      "error_critical": "خطأ: تحاول إضافة العملية الحرجة 'NAME' إلى قائمة الإنهاء. هذا الإجراء محظور لحماية النظام.",
+      "press_enter": "اضغط Enter للعودة..."
+    }
+  },
+  "game_mode": {
+    "activating": "جاري تفعيل وضع اللعب...",
+    "stopping_services": "جاري إيقاف الخدمات المستهدفة...",
+    "service_stopped": "تم إيقاف الخدمة 'NAME'.",
+    "saving_processes": "جاري حفظ العمليات القابلة لإعادة التشغيل...",
+    "process_found": "تم العثور على العملية 'NAME'، تم حفظ المسار.",
+    "nothing_to_kill": "لا شيء للإنهاء.",
+    "killing_processes": "جاري إنهاء جميع العمليات (باستثناء الحرجة والوايت ليست)...",
+    "terminated": "تم إنهاء: COUNT عمليات.",
+    "auto_tracking": "تم بدء التتبع التلقائي.",
+    "activated": "تم تفعيل وضع اللعب!",
+    "press_enter": "اضغط Enter للعودة للقائمة..."
+  },
+  "normal_mode": {
+    "deactivating": "جاري إلغاء تفعيل وضع اللعب والاستعادة...",
+    "tracking_stopped": "تم إيقاف التتبع الخلفي.",
+    "not_active": "وضع اللعب لم يكن نشطاً.",
+    "restoring_processes": "جاري استعادة العمليات المحفوظة...",
+    "launching": "جاري بدء 'NAME'...",
+    "restoring_services": "جاري استعادة الخدمات المتوقفة...",
+    "service_started": "تم بدء الخدمة 'NAME'.",
+    "normal_restored": "تم استعادة الوضع العادي.",
+    "press_enter": "اضغط Enter للعودة للقائمة..."
+  },
+  "optix": {
+    "not_found_title": "الملف غير موجود!",
+    "not_found_msg": "الملف FILE غير موجود!",
+    "not_found_needed": "مطلوب للتشغيل المستقر لـ OPTIX.",
+    "option_show": "إظهار الملف في المستكشف",
+    "option_create": "إنشاء FILE في هذا المجلد",
+    "option_back": "العودة للقائمة",
+    "explorer_opened": "تم فتح المستكشف. اضغط Enter...",
+    "created": "تم إنشاء الملف!",
+    "path": "المسار",
+    "press_enter": "اضغط Enter...",
+    "launching": "جاري بدء FILE في نافذة جديدة. العودة للقائمة...",
+    "dev_notice": "قسم 'OPTIX' قيد التطوير."
+  },
+  "common": {
+    "enter_to_return": "اضغط Enter للعودة للقائمة...",
+    "esc_to_return": "(Esc للعودة)",
+    "enter_save_esc_cancel": "(Enter - حفظ، Esc - إلغاء)",
+    "enter_confirm_esc_cancel": "(Enter - تأكيد، Esc - إلغاء)",
+    "enter_next_esc_back": "(Enter - التالي، Esc - رجوع)",
+    "choose": "اختر (1-4):",
+    "yes": "نعم",
+    "no": "لا",
+    "ok": "موافق",
+    "error": "خطأ",
+    "info": "معلومات",
+    "warning": "تحذير"
+  },
+  "exit": {
+    "closing": "الإغلاق خلال 3 ثوانٍ...",
+    "thanks": "شكراً لاستخدام OPTIX!",
+    "goodbye": "مع السلامة!"
+  },
+  "footer": {
+    "navigation": "[v/^] أو [الأسهم] - تحديد   |   [Enter] - تأكيد   |   [Esc] - خروج"
+  }
+}

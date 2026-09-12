@@ -1,0 +1,245 @@
+﻿{
+  "_meta": {
+    "name": "Korean",
+    "native_name": "한국어",
+    "code": "ko"
+  },
+  "menu": {
+    "game_mode": "게임 모드",
+    "normal_mode": "일반 모드",
+    "settings": "설정",
+    "optix": "OPTIX",
+    "exit": "종료"
+  },
+  "loading": {
+    "initializing": "초기화 중...",
+    "checking_encoding": "인코딩 확인 중...",
+    "loading_config": "설정 로드 중...",
+    "preparing_ui": "인터페이스 준비 중...",
+    "done": "완료!",
+    "loading": "로딩 중..."
+  },
+  "settings": {
+    "main": "설정",
+    "customization": "인터페이스 사용자 지정",
+    "cleanup": "정리 ( junk )",
+    "cleanup_lists": "정리 목록 (프로세스)",
+    "mini_games": "미니게임",
+    "language": "언어"
+  },
+  "customization": {
+    "main": "사용자 지정",
+    "color_theme": "색상 구성표",
+    "color_effects": "색상 효과 (파도/펄스/무지개)",
+    "custom_rgb": "사용자 지정 RGB 색상",
+    "game_styles": "게임 스타일",
+    "ascii_animation": "ASCII 애니메이션",
+    "boot_screen": "부팅 화면"
+  },
+  "colors": {
+    "select_theme": "색상 구성표 선택:",
+    "theme_saved": "테마 'THEME' 저장됨!",
+    "theme_applied": "테마 적용됨.",
+    "themes": {
+      "purple": "보라색",
+      "cyberpunk": "사이버펑크",
+      "forest": "숲",
+      "matrix": "매트릭스",
+      "sunset": "일몰",
+      "ocean": "바다",
+      "fire": "불",
+      "gold": "금",
+      "synthwave": "신스웨이브",
+      "mono": "모노",
+      "blood": "피",
+      "ice": "얼음"
+    }
+  },
+  "color_effects": {
+    "main": "색상 효과",
+    "effect": "색상 효과",
+    "speed": "효과 속도",
+    "custom_rgb": "사용자 지정 RGB 색상",
+    "reset_rgb": "RGB 초기화 (테마 사용)",
+    "current_effect": "현재 효과",
+    "speed_range": "범위 0.1..3.0, 단계 0.1",
+    "rgb_desc": "고정 색상 설정, 효과 비활성화",
+    "preview": "미리보기:",
+    "channel_select": "[좌/우] 채널  [상/하] 변경 (단계 5, Shift=20)",
+    "rgb_saved": "RGB 저장됨!",
+    "rgb_reset": "RGB 초기화됨 - 테마 사용 중.",
+    "speed_saved": "속도 저장됨!",
+    "effects": {
+      "wave": "파도 (수직 사인파)",
+      "pulse": "펄스 (호흡)",
+      "flow": "부드러운 흐름",
+      "rainbow": "무지개 (시간별 HSL)"
+    }
+  },
+  "styles": {
+    "main": "스타일 설정",
+    "claude_crab": "Claude 게 스타일",
+    "snake": "뱀 스타일",
+    "dinosaur": "공룡 스타일",
+    "select_style": "'NAME'의 스타일 선택:",
+    "style_saved": "스타일 'NAME' 저장됨!"
+  },
+  "boot_screen": {
+    "main": "부팅 화면",
+    "current_style": "현재 스타일",
+    "styles": {
+      "full": "전체 (로고 + 진행 바 + 단계)",
+      "classic": "클래식 (진행 바만)",
+      "minimal": "미니멀 (텍스트만)",
+      "terminals": "터미널 (바이러스 효과)",
+      "off": "끄기 (빠른 시작)"
+    },
+    "saved": "스타일 'NAME' 저장됨!"
+  },
+  "animation": {
+    "main": "ASCII 애니메이션",
+    "select": "ASCII 애니메이션 선택 (게임 배경):",
+    "saved": "애니메이션 'NAME' 저장됨!",
+    "effects": {
+      "off": "끄기",
+      "stars": "별",
+      "wave": "파도",
+      "spiral": "나선",
+      "matrix": "매트릭스",
+      "rain": "비",
+      "pulse": "펄스"
+    }
+  },
+  "games": {
+    "main": "미니게임",
+    "snake": "뱀",
+    "dinosaur": "공룡",
+    "claude_crab": "Claude 게",
+    "score": "점수",
+    "game_over": "게임 오버",
+    "your_score": "당신의 점수",
+    "press_any_key": "아무 키나 눌러 종료..."
+  },
+  "snake": {
+    "score": "점수"
+  },
+  "dinosaur": {
+    "controls": "조작:",
+    "move": "좌/우 또는 A/D: 이동",
+    "fire": "스페이스: 점프"
+  },
+  "cleanup": {
+    "main": "정리 ( junk )",
+    "starting": "정리 시작...",
+    "user_temp": "사용자 TEMP",
+    "system_temp": "시스템 TEMP",
+    "prefetch": "Prefetch",
+    "dns_cache": "DNS 캐시",
+    "recycle_bin": "휴지통",
+    "skipped": "경로에 접근 불가, 건너뜀.",
+    "cleaned_files": "파일 삭제됨",
+    "freed_mb": "MB 확보",
+    "cleared": "비움.",
+    "total_deleted": "총 삭제",
+    "total_freed": "MB 확보",
+    "press_enter": "Enter를 눌러 돌아가기...",
+    "cleanmgr": "Disk Cleanup (cleanmgr) - ALL drives - all categories",
+    "select_none": "[N] Clear selection",
+    "select_all": "[A] Select all",
+    "cancel_hint": "[Esc] Cancel",
+    "nothing_selected": "Nothing selected, nothing to clean.",
+    "start_hint": "[Enter] Start cleaning",
+    "select_title": "Select what to clean (Space - toggle, A - all, N - clear):",
+    "cancelled": "Cleanup cancelled.",
+    "free_gb": "free FREE GB",
+    "drives_title": "Select drives to clean (Space - toggle, A - all, N - clear):",
+    "drive_skipped": "path is on DRIVE;",
+    "system_marker": "System",
+    "drive_unselected": "drive not selected",
+    "cleanmgr_drive_skip": "system drive not selected, skipped.",
+    "summary_after": "Memory after cleanup:",
+    "free": "Free",
+    "ram": "RAM",
+    "used": "Used"
+  },
+  "process_manager": {
+    "title": "프로세스 관리자",
+    "loading": "프로세스 로드 및 분석 중...",
+    "colors_legend": "색상: 빨강-중요, DarkCyan-시스템, 파랑-Microsoft, 흰색-기타",
+    "controls": "조작: [상/하/PgUp/PgDn] 이동 | [Enter] 선택 | [P] 게시자",
+    "save_selected": "[9] 선택 항목 저장",
+    "exit": "[Esc] 종료",
+    "critical_warning": "경고",
+    "critical_msg": "프로세스 'NAME'은 시스템에 중요합니다. 이 프로세스를 목록에 추가하는 것은 차단됩니다.",
+    "press_enter": "Enter를 눌러 돌아가기...",
+    "save_menu": {
+      "add_to": "선택한 SELECTED_COUNT개의 프로세스를 어디에 추가?",
+      "blacklist": "블랙리스트 (종료)",
+      "whitelist": "화이트리스트 (절대 만지지 않음)",
+      "restartable": "재시작 가능 (나중에 복원)",
+      "success": "FILENAME에 성공적으로 추가됨!",
+      "error_critical": "오류: 중요 프로세스 'NAME'을 종료 목록에 추가하려고 합니다. 이 작업은 시스템 보호를 위해 차단됩니다.",
+      "press_enter": "Enter를 눌러 돌아가기..."
+    }
+  },
+  "game_mode": {
+    "activating": "게임 모드 활성화 중...",
+    "stopping_services": "대상 서비스 중지 중...",
+    "service_stopped": "서비스 'NAME' 중지됨.",
+    "saving_processes": "재시작 가능한 프로세스 저장 중...",
+    "process_found": "프로세스 'NAME' 찾음, 경로 저장됨.",
+    "nothing_to_kill": "종료할 것이 없습니다.",
+    "killing_processes": "모든 프로세스 종료 중 (중요 및 화이트리스트 제외)...",
+    "terminated": "종료됨: COUNT개의 프로세스.",
+    "auto_tracking": "자동 추적 시작됨.",
+    "activated": "게임 모드 활성화됨!",
+    "press_enter": "Enter를 눌러 메뉴로 돌아가기..."
+  },
+  "normal_mode": {
+    "deactivating": "게임 모드 비활성화 및 복원 중...",
+    "tracking_stopped": "백그라운드 추적 중지됨.",
+    "not_active": "게임 모드가 활성화되지 않았습니다.",
+    "restoring_processes": "저장된 프로세스 복원 중...",
+    "launching": "'NAME' 시작 중...",
+    "restoring_services": "중지된 서비스 복원 중...",
+    "service_started": "서비스 'NAME' 시작됨.",
+    "normal_restored": "일반 모드 복원됨.",
+    "press_enter": "Enter를 눌러 메뉴로 돌아가기..."
+  },
+  "optix": {
+    "not_found_title": "파일을 찾을 수 없습니다!",
+    "not_found_msg": "파일 FILE이 존재하지 않습니다!",
+    "not_found_needed": "OPTIX의 안정적인 작동을 위해 필요합니다.",
+    "option_show": "탐색기에서 파일 표시",
+    "option_create": "이 폴더에 FILE 생성",
+    "option_back": "메뉴로 돌아가기",
+    "explorer_opened": "탐색기 열림. Enter 누르기...",
+    "created": "파일 생성됨!",
+    "path": "경로",
+    "press_enter": "Enter 누르기...",
+    "launching": "새 창에서 FILE 시작 중. 메뉴로 돌아가는 중...",
+    "dev_notice": "'OPTIX' 섹션은 개발 중입니다."
+  },
+  "common": {
+    "enter_to_return": "Enter를 눌러 메뉴로 돌아가기...",
+    "esc_to_return": "(Esc로 돌아가기)",
+    "enter_save_esc_cancel": "(Enter - 저장, Esc - 취소)",
+    "enter_confirm_esc_cancel": "(Enter - 확인, Esc - 취소)",
+    "enter_next_esc_back": "(Enter - 다음, Esc - 뒤로)",
+    "choose": "선택 (1-4):",
+    "yes": "예",
+    "no": "아니오",
+    "ok": "확인",
+    "error": "오류",
+    "info": "정보",
+    "warning": "경고"
+  },
+  "exit": {
+    "closing": "3초 후 종료...",
+    "thanks": "OPTIX를 사용해 주셔서 감사합니다!",
+    "goodbye": "안녕히 가세요!"
+  },
+  "footer": {
+    "navigation": "[v/^] 또는 [화살표] - 선택   |   [Enter] - 확인   |   [Esc] - 종료"
+  }
+}

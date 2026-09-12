@@ -1,0 +1,245 @@
+﻿{
+  "_meta": {
+    "name": "Chinese",
+    "native_name": "中文",
+    "code": "zh"
+  },
+  "menu": {
+    "game_mode": "游戏模式",
+    "normal_mode": "普通模式",
+    "settings": "设置",
+    "optix": "OPTIX",
+    "exit": "退出"
+  },
+  "loading": {
+    "initializing": "正在初始化...",
+    "checking_encoding": "正在检查编码...",
+    "loading_config": "正在加载配置...",
+    "preparing_ui": "正在准备界面...",
+    "done": "完成！",
+    "loading": "加载中..."
+  },
+  "settings": {
+    "main": "设置",
+    "customization": "界面自定义",
+    "cleanup": "垃圾清理",
+    "cleanup_lists": "清理列表（进程）",
+    "mini_games": "迷你游戏",
+    "language": "语言"
+  },
+  "customization": {
+    "main": "自定义",
+    "color_theme": "配色方案",
+    "color_effects": "颜色效果（波浪/脉冲/彩虹）",
+    "custom_rgb": "自定义RGB颜色",
+    "game_styles": "游戏样式",
+    "ascii_animation": "ASCII动画",
+    "boot_screen": "启动画面"
+  },
+  "colors": {
+    "select_theme": "选择配色方案：",
+    "theme_saved": "主题 'THEME' 已保存！",
+    "theme_applied": "主题已应用。",
+    "themes": {
+      "purple": "紫色",
+      "cyberpunk": "赛博朋克",
+      "forest": "森林",
+      "matrix": "矩阵",
+      "sunset": "日落",
+      "ocean": "海洋",
+      "fire": "火焰",
+      "gold": "金色",
+      "synthwave": "合成波",
+      "mono": "单色",
+      "blood": "血红",
+      "ice": "冰蓝"
+    }
+  },
+  "color_effects": {
+    "main": "颜色效果",
+    "effect": "颜色效果",
+    "speed": "效果速度",
+    "custom_rgb": "自定义RGB颜色",
+    "reset_rgb": "重置RGB（使用主题）",
+    "current_effect": "当前效果",
+    "speed_range": "范围 0.1..3.0，步长 0.1",
+    "rgb_desc": "设置固定颜色，效果禁用",
+    "preview": "预览：",
+    "channel_select": "[左/右] 通道  [上/下] 更改（步长5，Shift=20）",
+    "rgb_saved": "RGB已保存！",
+    "rgb_reset": "RGB已重置 - 使用主题。",
+    "speed_saved": "速度已保存！",
+    "effects": {
+      "wave": "波浪（垂直正弦）",
+      "pulse": "脉冲（呼吸）",
+      "flow": "平滑流动",
+      "rainbow": "彩虹（按时间的HSL）"
+    }
+  },
+  "styles": {
+    "main": "样式设置",
+    "claude_crab": "Claude螃蟹样式",
+    "snake": "贪吃蛇样式",
+    "dinosaur": "恐龙样式",
+    "select_style": "为 'NAME' 选择样式：",
+    "style_saved": "样式 'NAME' 已保存！"
+  },
+  "boot_screen": {
+    "main": "启动画面",
+    "current_style": "当前样式",
+    "styles": {
+      "full": "完整（标志 + 进度条 + 阶段）",
+      "classic": "经典（仅进度条）",
+      "minimal": "简约（仅文本）",
+      "terminals": "终端（病毒效果）",
+      "off": "关闭（快速启动）"
+    },
+    "saved": "样式 'NAME' 已保存！"
+  },
+  "animation": {
+    "main": "ASCII动画",
+    "select": "选择ASCII动画（游戏背景）：",
+    "saved": "动画 'NAME' 已保存！",
+    "effects": {
+      "off": "关闭",
+      "stars": "星星",
+      "wave": "波浪",
+      "spiral": "螺旋",
+      "matrix": "矩阵",
+      "rain": "雨",
+      "pulse": "脉冲"
+    }
+  },
+  "games": {
+    "main": "迷你游戏",
+    "snake": "贪吃蛇",
+    "dinosaur": "小恐龙",
+    "claude_crab": "Claude螃蟹",
+    "score": "分数",
+    "game_over": "游戏结束",
+    "your_score": "你的分数",
+    "press_any_key": "按任意键退出..."
+  },
+  "snake": {
+    "score": "分数"
+  },
+  "dinosaur": {
+    "controls": "控制：",
+    "move": "左/右或A/D：移动",
+    "fire": "空格：跳跃"
+  },
+  "cleanup": {
+    "main": "垃圾清理",
+    "starting": "开始垃圾清理...",
+    "user_temp": "用户临时文件",
+    "system_temp": "系统临时文件",
+    "prefetch": "预读取",
+    "dns_cache": "DNS缓存",
+    "recycle_bin": "回收站",
+    "skipped": "路径不可访问，已跳过。",
+    "cleaned_files": "个文件已删除",
+    "freed_mb": "MB已释放",
+    "cleared": "已清空。",
+    "total_deleted": "共删除",
+    "total_freed": "MB已释放",
+    "press_enter": "按Enter返回...",
+    "cleanmgr": "Disk Cleanup (cleanmgr) - ALL drives - all categories",
+    "select_none": "[N] Clear selection",
+    "select_all": "[A] Select all",
+    "cancel_hint": "[Esc] Cancel",
+    "nothing_selected": "Nothing selected, nothing to clean.",
+    "start_hint": "[Enter] Start cleaning",
+    "select_title": "Select what to clean (Space - toggle, A - all, N - clear):",
+    "cancelled": "Cleanup cancelled.",
+    "free_gb": "free FREE GB",
+    "drives_title": "Select drives to clean (Space - toggle, A - all, N - clear):",
+    "drive_skipped": "path is on DRIVE;",
+    "system_marker": "System",
+    "drive_unselected": "drive not selected",
+    "cleanmgr_drive_skip": "system drive not selected, skipped.",
+    "summary_after": "Memory after cleanup:",
+    "free": "Free",
+    "ram": "RAM",
+    "used": "Used"
+  },
+  "process_manager": {
+    "title": "进程管理器",
+    "loading": "正在加载和分析进程...",
+    "colors_legend": "颜色：红色-关键，DarkCyan-系统，蓝色-Microsoft，白色-其他",
+    "controls": "控制：[上/下/PgUp/PgDn] 导航 | [Enter] 选择 | [P] 发布者",
+    "save_selected": "[9] 保存所选",
+    "exit": "[Esc] 退出",
+    "critical_warning": "警告",
+    "critical_msg": "进程 'NAME' 对系统至关重要。将此进程添加到任何列表都被阻止。",
+    "press_enter": "按Enter返回...",
+    "save_menu": {
+      "add_to": "将选中的 SELECTED_COUNT 个进程添加到？",
+      "blacklist": "黑名单（终止）",
+      "whitelist": "白名单（永不触碰）",
+      "restartable": "可重启（之后恢复）",
+      "success": "进程已成功添加到 FILENAME！",
+      "error_critical": "错误：您试图将关键进程 'NAME' 添加到终止列表。此操作被阻止以保护系统。",
+      "press_enter": "按Enter返回..."
+    }
+  },
+  "game_mode": {
+    "activating": "正在激活游戏模式...",
+    "stopping_services": "正在停止目标服务...",
+    "service_stopped": "服务 'NAME' 已停止。",
+    "saving_processes": "正在保存可重启进程...",
+    "process_found": "找到进程 'NAME'，路径已保存。",
+    "nothing_to_kill": "没有需要终止的。",
+    "killing_processes": "正在终止所有进程（关键和whitelist除外）...",
+    "terminated": "已终止：COUNT 个进程。",
+    "auto_tracking": "自动跟踪已启动。",
+    "activated": "游戏模式已激活！",
+    "press_enter": "按Enter返回菜单..."
+  },
+  "normal_mode": {
+    "deactivating": "正在停用游戏模式并恢复...",
+    "tracking_stopped": "后台跟踪已停止。",
+    "not_active": "游戏模式未激活。",
+    "restoring_processes": "正在恢复保存的进程...",
+    "launching": "正在启动 'NAME'...",
+    "restoring_services": "正在恢复已停止的服务...",
+    "service_started": "服务 'NAME' 已启动。",
+    "normal_restored": "普通模式已恢复。",
+    "press_enter": "按Enter返回菜单..."
+  },
+  "optix": {
+    "not_found_title": "文件未找到！",
+    "not_found_msg": "文件 FILE 不存在！",
+    "not_found_needed": "它是OPTIX稳定运行所必需的。",
+    "option_show": "在资源管理器中显示文件",
+    "option_create": "在此文件夹中创建 FILE",
+    "option_back": "返回菜单",
+    "explorer_opened": "资源管理器已打开。按Enter...",
+    "created": "文件已创建！",
+    "path": "路径",
+    "press_enter": "按Enter...",
+    "launching": "正在新窗口中启动 FILE。返回菜单...",
+    "dev_notice": "'OPTIX' 部分正在开发中。"
+  },
+  "common": {
+    "enter_to_return": "按Enter返回菜单...",
+    "esc_to_return": "（Esc返回）",
+    "enter_save_esc_cancel": "（Enter - 保存，Esc - 取消）",
+    "enter_confirm_esc_cancel": "（Enter - 确认，Esc - 取消）",
+    "enter_next_esc_back": "（Enter - 下一步，Esc - 返回）",
+    "choose": "选择（1-4）：",
+    "yes": "是",
+    "no": "否",
+    "ok": "确定",
+    "error": "错误",
+    "info": "信息",
+    "warning": "警告"
+  },
+  "exit": {
+    "closing": "3秒后关闭...",
+    "thanks": "感谢使用OPTIX！",
+    "goodbye": "再见！"
+  },
+  "footer": {
+    "navigation": "[v/^] 或 [方向键] - 选择   |   [Enter] - 确认   |   [Esc] - 退出"
+  }
+}

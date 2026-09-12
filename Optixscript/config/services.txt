@@ -1,0 +1,6 @@
+﻿# Имена служб для остановки в Игровом режиме и запуска в Обычном.
+# Указывайте короткое имя службы (Service Name), а не Display Name.
+# Пример: NVDisplay.ContainerLocalSystem, а не NVIDIA Display Container LS
+
+NVDisplay.ContainerLocalSystem
+unchecky_svc

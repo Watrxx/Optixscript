@@ -1,0 +1,245 @@
+﻿{
+  "_meta": {
+    "name": "Hindi",
+    "native_name": "हिन्दी",
+    "code": "hi"
+  },
+  "menu": {
+    "game_mode": "गेम मोड",
+    "normal_mode": "सामान्य मोड",
+    "settings": "सेटिंग्स",
+    "optix": "OPTIX",
+    "exit": "बाहर"
+  },
+  "loading": {
+    "initializing": "प्रारंभ हो रहा है...",
+    "checking_encoding": "एन्कोडिंग जाँच रहा है...",
+    "loading_config": "कॉन्फ़िगरेशन लोड हो रहा है...",
+    "preparing_ui": "इंटरफ़ेस तैयार हो रहा है...",
+    "done": "पूर्ण!",
+    "loading": "लोड हो रहा है..."
+  },
+  "settings": {
+    "main": "सेटिंग्स",
+    "customization": "इंटरफ़ेस अनुकूलन",
+    "cleanup": "कचरा सफ़ाई",
+    "cleanup_lists": "सफ़ाई सूचियाँ (प्रक्रियाएँ)",
+    "mini_games": "मिनी गेम्स",
+    "language": "भाषा"
+  },
+  "customization": {
+    "main": "अनुकूलन",
+    "color_theme": "रंग योजना",
+    "color_effects": "रंग प्रभाव (तरंग/नाड़ी/इंद्रधनुष)",
+    "custom_rgb": "कस्टम RGB रंग",
+    "game_styles": "गेम शैलियाँ",
+    "ascii_animation": "ASCII एनिमेशन",
+    "boot_screen": "बूट स्क्रीन"
+  },
+  "colors": {
+    "select_theme": "रंग योजना चुनें:",
+    "theme_saved": "थीम 'THEME' सहेजी गई!",
+    "theme_applied": "थीम लागू।",
+    "themes": {
+      "purple": "बैंगनी",
+      "cyberpunk": "साइबरपंक",
+      "forest": "जंगल",
+      "matrix": "मैट्रिक्स",
+      "sunset": "सूर्यास्त",
+      "ocean": "समुद्र",
+      "fire": "आग",
+      "gold": "सोना",
+      "synthwave": "सिंथवेव",
+      "mono": "मोनो",
+      "blood": "खून",
+      "ice": "बर्फ"
+    }
+  },
+  "color_effects": {
+    "main": "रंग प्रभाव",
+    "effect": "रंग प्रभाव",
+    "speed": "प्रभाव गति",
+    "custom_rgb": "कस्टम RGB रंग",
+    "reset_rgb": "RGB रीसेट करें (थीम उपयोग करें)",
+    "current_effect": "वर्तमान प्रभाव",
+    "speed_range": "सीमा 0.1..3.0, कदम 0.1",
+    "rgb_desc": "निश्चित रंग सेट करें, प्रभाव अक्षम",
+    "preview": "पूर्वावलोकन:",
+    "channel_select": "[बाएँ/दाएँ] चैनल  [ऊपर/नीचे] बदलें (कदम 5, Shift=20)",
+    "rgb_saved": "RGB सहेजी गई!",
+    "rgb_reset": "RGB रीसेट - थीम उपयोग।",
+    "speed_saved": "गति सहेजी गई!",
+    "effects": {
+      "wave": "तरंग (ऊर्ध्वाधर ज्या)",
+      "pulse": "नाड़ी (श्वास)",
+      "flow": "सहज प्रवाह",
+      "rainbow": "इंद्रधनुष (समय द्वारा HSL)"
+    }
+  },
+  "styles": {
+    "main": "शैली सेटिंग्स",
+    "claude_crab": "Claude क्रैब शैली",
+    "snake": "साँप शैली",
+    "dinosaur": "डायनासोर शैली",
+    "select_style": "'NAME' के लिए शैली चुनें:",
+    "style_saved": "शैली 'NAME' सहेजी गई!"
+  },
+  "boot_screen": {
+    "main": "बूट स्क्रीन",
+    "current_style": "वर्तमान शैली",
+    "styles": {
+      "full": "पूर्ण (लोगो + प्रगति बार + चरण)",
+      "classic": "क्लासिक (केवल प्रगति बार)",
+      "minimal": "न्यूनतम (केवल टेक्स्ट)",
+      "terminals": "टर्मिनल (वायरस प्रभाव)",
+      "off": "बंद (त्वरित प्रारंभ)"
+    },
+    "saved": "शैली 'NAME' सहेजी गई!"
+  },
+  "animation": {
+    "main": "ASCII एनिमेशन",
+    "select": "ASCII एनिमेशन चुनें (गेम के लिए पृष्ठभूमि):",
+    "saved": "एनिमेशन 'NAME' सहेजा गया!",
+    "effects": {
+      "off": "बंद",
+      "stars": "तारे",
+      "wave": "तरंग",
+      "spiral": "सर्पिल",
+      "matrix": "मैट्रिक्स",
+      "rain": "बारिश",
+      "pulse": "नाड़ी"
+    }
+  },
+  "games": {
+    "main": "मिनी गेम्स",
+    "snake": "साँप",
+    "dinosaur": "डायनासोर",
+    "claude_crab": "Claude क्रैब",
+    "score": "स्कोर",
+    "game_over": "गेम ओवर",
+    "your_score": "आपका स्कोर",
+    "press_any_key": "बाहर निकलने के लिए कोई भी कुंजी दबाएँ..."
+  },
+  "snake": {
+    "score": "स्कोर"
+  },
+  "dinosaur": {
+    "controls": "नियंत्रण:",
+    "move": "बाएँ/दाएँ या A/D: चलें",
+    "fire": "स्पेस: कूदें"
+  },
+  "cleanup": {
+    "main": "कचरा सफ़ाई",
+    "starting": "कचरा सफ़ाई प्रारंभ हो रही है...",
+    "user_temp": "उपयोगकर्ता TEMP",
+    "system_temp": "सिस्टम TEMP",
+    "prefetch": "Prefetch",
+    "dns_cache": "DNS कैश",
+    "recycle_bin": "रीसायकल बिन",
+    "skipped": "पथ सुलभ नहीं, छोड़ें।",
+    "cleaned_files": "फ़ाइलें हटाई गईं",
+    "freed_mb": "MB मुक्त",
+    "cleared": "खाली।",
+    "total_deleted": "कुल हटाई गईं",
+    "total_freed": "MB मुक्त",
+    "press_enter": "वापस जाने के लिए Enter दबाएँ...",
+    "cleanmgr": "Disk Cleanup (cleanmgr) - ALL drives - all categories",
+    "select_none": "[N] Clear selection",
+    "select_all": "[A] Select all",
+    "cancel_hint": "[Esc] Cancel",
+    "nothing_selected": "Nothing selected, nothing to clean.",
+    "start_hint": "[Enter] Start cleaning",
+    "select_title": "Select what to clean (Space - toggle, A - all, N - clear):",
+    "cancelled": "Cleanup cancelled.",
+    "free_gb": "free FREE GB",
+    "drives_title": "Select drives to clean (Space - toggle, A - all, N - clear):",
+    "drive_skipped": "path is on DRIVE;",
+    "system_marker": "System",
+    "drive_unselected": "drive not selected",
+    "cleanmgr_drive_skip": "system drive not selected, skipped.",
+    "summary_after": "Memory after cleanup:",
+    "free": "Free",
+    "ram": "RAM",
+    "used": "Used"
+  },
+  "process_manager": {
+    "title": "प्रक्रिया प्रबंधक",
+    "loading": "प्रक्रियाएँ लोड और विश्लेषण हो रही हैं...",
+    "colors_legend": "रंग: लाल-महत्वपूर्ण, DarkCyan-सिस्टम, नीला-Microsoft, सफ़ेद-अन्य",
+    "controls": "नियंत्रण: [ऊपर/नीचे/PgUp/PgDn] नेविगेट | [Enter] चुनें | [P] प्रकाशक",
+    "save_selected": "[9] चयनित सहेजें",
+    "exit": "[Esc] बाहर",
+    "critical_warning": "चेतावनी",
+    "critical_msg": "प्रक्रिया 'NAME' सिस्टम के लिए महत्वपूर्ण है। इस प्रक्रिया को किसी भी सूची में चुनना अवरुद्ध।",
+    "press_enter": "वापस जाने के लिए Enter दबाएँ...",
+    "save_menu": {
+      "add_to": "SELECTED_COUNT चयनित प्रक्रियाओं को कहाँ जोड़ें?",
+      "blacklist": "ब्लैकलिस्ट (समाप्त)",
+      "whitelist": "व्हाइटलिस्ट (कभी न छुएँ)",
+      "restartable": "पुनः प्रारंभ योग्य (बाद में पुनर्स्थापित)",
+      "success": "FILENAME में प्रक्रियाएँ सफलतापूर्वक जोड़ी गईं!",
+      "error_critical": "त्रुटि: आप महत्वपूर्ण प्रक्रिया 'NAME' को समाप्ति सूची में जोड़ने का प्रयास कर रहे हैं। यह क्रिया सिस्टम की सुरक्षा के लिए अवरुद्ध।",
+      "press_enter": "वापस जाने के लिए Enter दबाएँ..."
+    }
+  },
+  "game_mode": {
+    "activating": "गेम मोड सक्रिय हो रहा है...",
+    "stopping_services": "लक्षित सेवाएँ रुक रही हैं...",
+    "service_stopped": "सेवा 'NAME' रुकी।",
+    "saving_processes": "पुनः प्रारंभ योग्य प्रक्रियाएँ सहेजी जा रही हैं...",
+    "process_found": "प्रक्रिया 'NAME' मिली, पथ सहेजा गया।",
+    "nothing_to_kill": "समाप्त करने के लिए कुछ नहीं।",
+    "killing_processes": "सभी प्रक्रियाएँ समाप्त हो रही हैं (महत्वपूर्ण और व्हाइटलिस्ट को छोड़कर)...",
+    "terminated": "समाप्त: COUNT प्रक्रियाएँ।",
+    "auto_tracking": "स्वतः ट्रैकिंग प्रारंभ।",
+    "activated": "गेम मोड सक्रिय!",
+    "press_enter": "मेनू में वापस जाने के लिए Enter दबाएँ..."
+  },
+  "normal_mode": {
+    "deactivating": "गेम मोड निष्क्रिय और पुनर्स्थापित हो रहा है...",
+    "tracking_stopped": "पृष्ठभूमि ट्रैकिंग रुकी।",
+    "not_active": "गेम मोड सक्रिय नहीं था।",
+    "restoring_processes": "सहेजी गई प्रक्रियाएँ पुनर्स्थापित हो रही हैं...",
+    "launching": "'NAME' प्रारंभ हो रहा है...",
+    "restoring_services": "रुकी सेवाएँ पुनर्स्थापित हो रही हैं...",
+    "service_started": "सेवा 'NAME' प्रारंभ हुई।",
+    "normal_restored": "सामान्य मोड पुनर्स्थापित।",
+    "press_enter": "मेनू में वापस जाने के लिए Enter दबाएँ..."
+  },
+  "optix": {
+    "not_found_title": "फ़ाइल नहीं मिली!",
+    "not_found_msg": "फ़ाइल FILE मौजूद नहीं है!",
+    "not_found_needed": "यह OPTIX के स्थिर संचालन के लिए आवश्यक।",
+    "option_show": "एक्सप्लोरर में फ़ाइल दिखाएँ",
+    "option_create": "इस फ़ोल्डर में FILE बनाएँ",
+    "option_back": "मेनू में वापस",
+    "explorer_opened": "एक्सप्लोरर खुला। Enter दबाएँ...",
+    "created": "फ़ाइल बनाई गई!",
+    "path": "पथ",
+    "press_enter": "Enter दबाएँ...",
+    "launching": "नए विंडो में FILE प्रारंभ हो रहा है। मेनू में वापस...",
+    "dev_notice": "'OPTIX' खंड विकास में है।"
+  },
+  "common": {
+    "enter_to_return": "मेनू में वापस जाने के लिए Enter दबाएँ...",
+    "esc_to_return": "(वापस Esc)",
+    "enter_save_esc_cancel": "(Enter - सहेजें, Esc - रद्द)",
+    "enter_confirm_esc_cancel": "(Enter - पुष्टि, Esc - रद्द)",
+    "enter_next_esc_back": "(Enter - अगला, Esc - पीछे)",
+    "choose": "चुनें (1-4):",
+    "yes": "हाँ",
+    "no": "नहीं",
+    "ok": "ठीक",
+    "error": "त्रुटि",
+    "info": "जानकारी",
+    "warning": "चेतावनी"
+  },
+  "exit": {
+    "closing": "3 सेकंड में बंद हो रहा है...",
+    "thanks": "OPTIX का उपयोग करने के लिए धन्यवाद!",
+    "goodbye": "अलविदा!"
+  },
+  "footer": {
+    "navigation": "[v/^] या [तीर] - चुनें   |   [Enter] - पुष्टि   |   [Esc] - बाहर"
+  }
+}

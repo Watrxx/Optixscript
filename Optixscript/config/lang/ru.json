@@ -1,0 +1,254 @@
+﻿{
+  "_meta": {
+    "name": "Russian",
+    "native_name": "Русский",
+    "code": "ru"
+  },
+  "menu": {
+    "game_mode": "Игровой режим",
+    "normal_mode": "Обычный режим",
+    "settings": "Настройки",
+    "optix": "OPTIX",
+    "exit": "Выход"
+  },
+  "loading": {
+    "initializing": "Инициализация...",
+    "checking_encoding": "Проверка кодировки...",
+    "loading_config": "Загрузка конфигурации...",
+    "preparing_ui": "Подготовка интерфейса...",
+    "done": "Готово!",
+    "loading": "Загрузка..."
+  },
+  "settings": {
+    "main": "Настройки",
+    "customization": "Кастомизация интерфейса",
+    "cleanup": "Очистка мусора",
+    "cleanup_lists": "Настройка очистки (Списки)",
+    "mini_games": "Мини-игры",
+    "language": "Язык"
+  },
+  "customization": {
+    "main": "Кастомизация",
+    "color_theme": "Цветовая схема",
+    "color_effects": "Цветовые эффекты (волна/пульс/радуга)",
+    "custom_rgb": "Свой RGB-цвет",
+    "game_styles": "Стили игр",
+    "ascii_animation": "ASCII-анимация",
+    "boot_screen": "Экран загрузки"
+  },
+  "colors": {
+    "select_theme": "Выберите цветовую схему:",
+    "theme_saved": "Тема 'THEME' сохранена!",
+    "theme_applied": "Тема применена.",
+    "themes": {
+      "purple": "Фиолетовый",
+      "cyberpunk": "Киберпанк",
+      "forest": "Лес",
+      "matrix": "Матрица",
+      "sunset": "Закат",
+      "ocean": "Океан",
+      "fire": "Огонь",
+      "gold": "Золото",
+      "synthwave": "Синтвейв",
+      "mono": "Моно",
+      "blood": "Кровь",
+      "ice": "Лёд"
+    }
+  },
+  "color_effects": {
+    "main": "Цветовые эффекты",
+    "effect": "Эффект цвета",
+    "speed": "Скорость эффекта",
+    "custom_rgb": "Свой RGB-цвет",
+    "reset_rgb": "Сбросить RGB (использовать тему)",
+    "current_effect": "Текущий эффект",
+    "speed_range": "Диапазон 0.1..3.0, шаг 0.1",
+    "rgb_desc": "Задаёт фиксированный цвет, эффекты отключены",
+    "preview": "Превью:",
+    "channel_select": "[←/→] выбор канала  [↑/↓] изменение (шаг 5, Shift=20)",
+    "rgb_saved": "RGB сохранён!",
+    "rgb_reset": "RGB сброшен — используется тема.",
+    "speed_saved": "Скорость сохранена!",
+    "effects": {
+      "wave": "Волна (синусоида по вертикали)",
+      "pulse": "Пульсация (дыхание)",
+      "flow": "Плавное переливание",
+      "rainbow": "Радуга (HSL по времени)"
+    }
+  },
+  "styles": {
+    "main": "Настройка стилей",
+    "claude_crab": "Стиль Claude-краба",
+    "snake": "Стиль Змейки",
+    "dinosaur": "Стиль Динозаврика",
+    "select_style": "Выберите стиль для 'NAME':",
+    "style_saved": "Стиль 'NAME' сохранён!"
+  },
+  "boot_screen": {
+    "main": "Экран загрузки",
+    "current_style": "Текущий стиль",
+    "styles": {
+      "full": "Полный (логотип + прогресс-бар + этапы)",
+      "classic": "Классический (прогресс-бар)",
+      "minimal": "Минимальный (только текст)",
+      "terminals": "Терминалы (вирус-эффект)",
+      "off": "Выключен (быстрый старт)"
+    },
+    "saved": "Стиль 'NAME' сохранён!"
+  },
+  "animation": {
+    "main": "ASCII-анимация",
+    "select": "Выберите ASCII-анимацию (фон для игр):",
+    "saved": "Анимация 'NAME' сохранена!",
+    "effects": {
+      "off": "Выключена",
+      "stars": "Звёзды",
+      "wave": "Волна",
+      "spiral": "Спираль",
+      "matrix": "Матрица",
+      "rain": "Дождь",
+      "pulse": "Пульс"
+    }
+  },
+  "games": {
+    "main": "Мини-игры",
+    "snake": "Змейка",
+    "dinosaur": "Динозаврик",
+    "claude_crab": "Claude-краб",
+    "score": "Счёт",
+    "game_over": "ИГРА ОКОНЧЕНА",
+    "your_score": "Ваш счёт",
+    "press_any_key": "Нажмите любую клавишу для выхода..."
+  },
+  "snake": {
+    "score": "Счёт"
+  },
+  "dinosaur": {
+    "controls": "Управление:",
+    "move": "←/→ или A/D: Движение",
+    "fire": "Пробел: Прыжок"
+  },
+  "cleanup": {
+    "main": "Очистка мусора",
+    "starting": "Запуск очистки мусорных файлов...",
+    "user_temp": "Пользовательский TEMP",
+    "system_temp": "Системный TEMP",
+    "prefetch": "Prefetch",
+    "dns_cache": "Кэш DNS",
+    "recycle_bin": "Корзина",
+    "wu_cache": "Кэш обновлений Windows",
+    "windows_logs": "Журналы Windows",
+    "error_reports": "Отчёты об ошибках",
+    "recent": "Недавние документы",
+    "thumbnails": "Кэш миниатюр",
+    "cleanmgr": "Встроенная очистка диска (cleanmgr) - ВСЕ диски - все категории",
+    "select_title": "Выберите, что чистить (Space - отметить, A - все, N - снять все):",
+    "select_all": "[A] Выбрать все",
+    "select_none": "[N] Снять выбор",
+    "start_hint": "[Enter] Начать очистку",
+    "cancel_hint": "[Esc] Отмена",
+    "cancelled": "Очистка отменена.",
+    "nothing_selected": "Ничего не выбрано, нечего чистить.",
+    "drives_title": "Выберите диски для очистки (Space - отметить, A - все, N - снять все):",
+    "drive_skipped": "путь на диске DRIVE;",
+    "drive_unselected": "диск не выбран",
+    "free_gb": "свободно FREE ГБ",
+    "system_marker": "Системный",
+    "cleanmgr_drive_skip": "системный диск не выбран, пропуск.",
+    "summary_after": "Память после очистки:",
+    "used": "занято",
+    "free": "свободно",
+    "ram": "ОЗУ",
+    "cleanmgr_start": "Запуск очистки диска (cleanmgr)...",
+    "cleanmgr_skip": "cleanmgr.exe не найден, пропуск.",
+    "cleanmgr_categories": "Включено категорий очистки диска: COUNT.",
+    "cleanmgr_done": "Очистка диска завершена.",
+    "skipped": "путь недоступен, пропуск.",
+    "cleaned_files": "файлов удалено",
+    "freed_mb": "МБ освобождено",
+    "cleared": "очищена.",
+    "total_deleted": "Всего удалено",
+    "total_freed": "МБ освобождено",
+    "press_enter": "Нажмите Enter для возврата..."
+  },
+  "process_manager": {
+    "title": "Менеджер процессов",
+    "loading": "Загрузка и анализ процессов...",
+    "colors_legend": "Цвета: Red-Критические, DarkCyan-Системные, Blue-Microsoft, White-Другие",
+    "controls": "Управление: [↑/↓/PgUp/PgDn] Навигация | [Enter] Выбор | [P] Издатель",
+    "save_selected": "[9] Сохранить выбранное",
+    "exit": "[Esc] Выход",
+    "critical_warning": "ПРЕДУПРЕЖДЕНИЕ",
+    "critical_msg": "Процесс 'NAME' является критически важным для работы системы. Выбор этого процесса для любых списков заблокирован.",
+    "press_enter": "Нажмите Enter для возврата...",
+    "save_menu": {
+      "add_to": "Куда добавить SELECTED_COUNT выбранных процессов?",
+      "blacklist": "В Blacklist (завершать)",
+      "whitelist": "В Whitelist (никогда не трогать)",
+      "restartable": "В Restartable (восстанавливать)",
+      "success": "Процессы успешно добавлены в FILENAME!",
+      "error_critical": "ОШИБКА: Вы пытаетесь добавить критический процесс 'NAME' в список завершения. Это действие заблокировано для защиты системы.",
+      "press_enter": "Нажмите Enter для возврата..."
+    }
+  },
+  "game_mode": {
+    "activating": "Активация Игрового режима...",
+    "stopping_services": "Остановка целевых служб...",
+    "service_stopped": "Служба 'NAME' остановлена.",
+    "saving_processes": "Сохранение восстанавливаемых процессов...",
+    "process_found": "Процесс 'NAME' найден, путь сохранён.",
+    "nothing_to_kill": "Нечего завершать.",
+    "killing_processes": "Завершение всех процессов (кроме критических и whitelist)...",
+    "terminated": "Завершено: COUNT процессов.",
+    "auto_tracking": "Автоматическое отслеживание запущено.",
+    "activated": "Игровой режим активирован!",
+    "press_enter": "Нажмите Enter для возврата в меню..."
+  },
+  "normal_mode": {
+    "deactivating": "Деактивация Игрового режима и восстановление...",
+    "tracking_stopped": "Фоновое отслеживание остановлено.",
+    "not_active": "Игровой режим не был активен.",
+    "restoring_processes": "Восстановление сохранённых процессов...",
+    "launching": "Запуск 'NAME'...",
+    "restoring_services": "Восстановление остановленных служб...",
+    "service_started": "Служба 'NAME' запущена.",
+    "normal_restored": "Нормальный режим восстановлен.",
+    "press_enter": "Нажмите Enter для возврата в меню..."
+  },
+  "optix": {
+    "not_found_title": "Файл не найден!",
+    "not_found_msg": "Файл FILE не найден!",
+    "not_found_needed": "Он необходим для стабильной работы OPTIX.",
+    "option_show": "Показать файл в Проводнике",
+    "option_create": "Создать FILE в этой папке",
+    "option_back": "Вернуться в меню",
+    "explorer_opened": "Проводник открыт. Нажмите Enter...",
+    "created": "Файл создан!",
+    "path": "Путь",
+    "press_enter": "Нажмите Enter...",
+    "launching": "Запуск FILE в новом окне. Возврат в меню...",
+    "dev_notice": "Раздел 'OPTIX' находится в разработке."
+  },
+  "common": {
+    "enter_to_return": "Нажмите Enter для возврата в меню...",
+    "esc_to_return": "(Esc для возврата)",
+    "enter_save_esc_cancel": "(Enter — сохранить, Esc — отмена)",
+    "enter_confirm_esc_cancel": "(Enter — подтвердить, Esc — отмена)",
+    "enter_next_esc_back": "(Enter — далее, Esc — назад)",
+    "choose": "Выберите (1-4):",
+    "yes": "Да",
+    "no": "Нет",
+    "ok": "OK",
+    "error": "ОШИБКА",
+    "info": "ИНФО",
+    "warning": "ВНИМАНИЕ"
+  },
+  "exit": {
+    "closing": "Закрытие через 3 секунды...",
+    "thanks": "Спасибо за использование OPTIX!",
+    "goodbye": "До свидания!"
+  },
+  "footer": {
+    "navigation": "[v/^] или [стрелки] - выбор   |   [Enter] - подтвердить   |   [Esc] - выход"
+  }
+}

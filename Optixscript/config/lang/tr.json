@@ -1,0 +1,245 @@
+﻿{
+  "_meta": {
+    "name": "Turkish",
+    "native_name": "Türkçe",
+    "code": "tr"
+  },
+  "menu": {
+    "game_mode": "Oyun Modu",
+    "normal_mode": "Normal Mod",
+    "settings": "Ayarlar",
+    "optix": "OPTIX",
+    "exit": "Çıkış"
+  },
+  "loading": {
+    "initializing": "Başlatılıyor...",
+    "checking_encoding": "Kodlama kontrol ediliyor...",
+    "loading_config": "Yapılandırma yükleniyor...",
+    "preparing_ui": "Arayüz hazırlanıyor...",
+    "done": "Tamamlandı!",
+    "loading": "Yükleniyor..."
+  },
+  "settings": {
+    "main": "Ayarlar",
+    "customization": "Arayüz Özelleştirme",
+    "cleanup": "Çöp Temizliği",
+    "cleanup_lists": "Temizlik Listeleri (Süreçler)",
+    "mini_games": "Mini Oyunlar",
+    "language": "Dil"
+  },
+  "customization": {
+    "main": "Özelleştirme",
+    "color_theme": "Renk Şeması",
+    "color_effects": "Renk Efektleri (dalga/nabız/gökkuşağı)",
+    "custom_rgb": "Özel RGB Rengi",
+    "game_styles": "Oyun Stilleri",
+    "ascii_animation": "ASCII Animasyon",
+    "boot_screen": "Başlangıç Ekranı"
+  },
+  "colors": {
+    "select_theme": "Renk şeması seçin:",
+    "theme_saved": "Tema 'THEME' kaydedildi!",
+    "theme_applied": "Tema uygulandı.",
+    "themes": {
+      "purple": "Mor",
+      "cyberpunk": "Siber Saldırı",
+      "forest": "Orman",
+      "matrix": "Matris",
+      "sunset": "Gün Batımı",
+      "ocean": "Okyanus",
+      "fire": "Ateş",
+      "gold": "Altın",
+      "synthwave": "Sentez Dalgası",
+      "mono": "Tek Renk",
+      "blood": "Kan",
+      "ice": "Buz"
+    }
+  },
+  "color_effects": {
+    "main": "Renk Efektleri",
+    "effect": "Renk Etkisi",
+    "speed": "Efekt Hızı",
+    "custom_rgb": "Özel RGB Rengi",
+    "reset_rgb": "RGB'yi Sıfırla (temayı kullan)",
+    "current_effect": "Mevcut efekt",
+    "speed_range": "Aralık 0.1..3.0, adım 0.1",
+    "rgb_desc": "Sabit renk ayarlar, efektler devre dışı",
+    "preview": "Önizleme:",
+    "channel_select": "[Sol/Sağ] kanal  [Yukarı/Aşağı] değiştir (adım 5, Shift=20)",
+    "rgb_saved": "RGB kaydedildi!",
+    "rgb_reset": "RGB sıfırlandı - tema kullanılıyor.",
+    "speed_saved": "Hız kaydedildi!",
+    "effects": {
+      "wave": "Dalga (dikey sinüs)",
+      "pulse": "Nabız (nefes)",
+      "flow": "Yumuşak akış",
+      "rainbow": "Gökkuşağı (zamanla HSL)"
+    }
+  },
+  "styles": {
+    "main": "Stil Ayarları",
+    "claude_crab": "Claude Yengeç Stili",
+    "snake": "Yılan Stili",
+    "dinosaur": "Dinozor Stili",
+    "select_style": "'NAME' için stil seçin:",
+    "style_saved": "Stil 'NAME' kaydedildi!"
+  },
+  "boot_screen": {
+    "main": "Başlangıç Ekranı",
+    "current_style": "Mevcut stil",
+    "styles": {
+      "full": "Tam (logo + ilerleme çubuğu + aşamalar)",
+      "classic": "Klasik (sadece ilerleme çubuğu)",
+      "minimal": "Minimal (sadece metin)",
+      "terminals": "Terminaller (virüs efekti)",
+      "off": "Kapalı (hızlı başlangıç)"
+    },
+    "saved": "Stil 'NAME' kaydedildi!"
+  },
+  "animation": {
+    "main": "ASCII Animasyon",
+    "select": "ASCII animasyonu seçin (oyunlar için arka plan):",
+    "saved": "Animasyon 'NAME' kaydedildi!",
+    "effects": {
+      "off": "Kapalı",
+      "stars": "Yıldızlar",
+      "wave": "Dalga",
+      "spiral": "Spiral",
+      "matrix": "Matris",
+      "rain": "Yağmur",
+      "pulse": "Nabız"
+    }
+  },
+  "games": {
+    "main": "Mini Oyunlar",
+    "snake": "Yılan",
+    "dinosaur": "Dinozor",
+    "claude_crab": "Claude Yengeç",
+    "score": "Skor",
+    "game_over": "OYUN BİTTİ",
+    "your_score": "Skorunuz",
+    "press_any_key": "Çıkmak için herhangi bir tuşa basın..."
+  },
+  "snake": {
+    "score": "Skor"
+  },
+  "dinosaur": {
+    "controls": "Kontroller:",
+    "move": "Sol/Sağ veya A/D: Hareket",
+    "fire": "Boşluk: Zıpla"
+  },
+  "cleanup": {
+    "main": "Çöp Temizliği",
+    "starting": "Çöp temizliği başlatılıyor...",
+    "user_temp": "Kullanıcı TEMP",
+    "system_temp": "Sistem TEMP",
+    "prefetch": "Prefetch",
+    "dns_cache": "DNS Önbelleği",
+    "recycle_bin": "Çöp Kutusu",
+    "skipped": "yol erişilemez, atlandı.",
+    "cleaned_files": "dosya silindi",
+    "freed_mb": "MB boşaltıldı",
+    "cleared": "boşaltıldı.",
+    "total_deleted": "Toplam silinen",
+    "total_freed": "MB boşaltıldı",
+    "press_enter": "Dönmek için Enter'a basın...",
+    "cleanmgr": "Disk Cleanup (cleanmgr) - ALL drives - all categories",
+    "select_none": "[N] Clear selection",
+    "select_all": "[A] Select all",
+    "cancel_hint": "[Esc] Cancel",
+    "nothing_selected": "Nothing selected, nothing to clean.",
+    "start_hint": "[Enter] Start cleaning",
+    "select_title": "Select what to clean (Space - toggle, A - all, N - clear):",
+    "cancelled": "Cleanup cancelled.",
+    "free_gb": "free FREE GB",
+    "drives_title": "Select drives to clean (Space - toggle, A - all, N - clear):",
+    "drive_skipped": "path is on DRIVE;",
+    "system_marker": "System",
+    "drive_unselected": "drive not selected",
+    "cleanmgr_drive_skip": "system drive not selected, skipped.",
+    "summary_after": "Memory after cleanup:",
+    "free": "Free",
+    "ram": "RAM",
+    "used": "Used"
+  },
+  "process_manager": {
+    "title": "Süreç Yöneticisi",
+    "loading": "Süreçler yükleniyor ve analiz ediliyor...",
+    "colors_legend": "Renkler: Kırmızı-Kritik, DarkCyan-Sistem, Mavi-Microsoft, Beyaz-Diğer",
+    "controls": "Kontroller: [Yukarı/Aşağı/PgUp/PgDn] Gezin | [Enter] Seç | [P] Yayıncı",
+    "save_selected": "[9] Seçilenleri kaydet",
+    "exit": "[Esc] Çıkış",
+    "critical_warning": "UYARI",
+    "critical_msg": "Süreç 'NAME' sistem için kritiktir. Bu sürecin herhangi bir listeye seçilmesi engellenmiştir.",
+    "press_enter": "Dönmek için Enter'a basın...",
+    "save_menu": {
+      "add_to": "Seçilen SELECTED_COUNT süreci nereye ekle?",
+      "blacklist": "Kara liste (sonlandır)",
+      "whitelist": "Beyaz liste (asla dokunma)",
+      "restartable": "Yeniden başlatılabilir (sonra geri yükle)",
+      "success": "Süreçler FILENAME'a başarıyla eklendi!",
+      "error_critical": "HATA: Kritik süreç 'NAME''i sonlandırma listesine eklemeye çalışıyorsunuz. Bu eylem sistemi korumak için engellenmiştir.",
+      "press_enter": "Dönmek için Enter'a basın..."
+    }
+  },
+  "game_mode": {
+    "activating": "Oyun Modu etkinleştiriliyor...",
+    "stopping_services": "Hedef hizmetler durduruluyor...",
+    "service_stopped": "Hizmet 'NAME' durduruldu.",
+    "saving_processes": "Yeniden başlatılabilir süreçler kaydediliyor...",
+    "process_found": "Süreç 'NAME' bulundu, yol kaydedildi.",
+    "nothing_to_kill": "Sonlandırılacak bir şey yok.",
+    "killing_processes": "Tüm süreçler sonlandırılıyor (kritik ve beyaz liste hariç)...",
+    "terminated": "Sonlandırıldı: COUNT süreç.",
+    "auto_tracking": "Otomatik izleme başlatıldı.",
+    "activated": "Oyun Modu etkinleştirildi!",
+    "press_enter": "Menüye dönmek için Enter'a basın..."
+  },
+  "normal_mode": {
+    "deactivating": "Oyun Modu devre dışı bırakılıyor ve geri yükleniyor...",
+    "tracking_stopped": "Arka plan izleme durduruldu.",
+    "not_active": "Oyun Modu etkin değildi.",
+    "restoring_processes": "Kayıtlı süreçler geri yükleniyor...",
+    "launching": "'NAME' başlatılıyor...",
+    "restoring_services": "Durdurulan hizmetler geri yükleniyor...",
+    "service_started": "Hizmet 'NAME' başlatıldı.",
+    "normal_restored": "Normal mod geri yüklendi.",
+    "press_enter": "Menüye dönmek için Enter'a basın..."
+  },
+  "optix": {
+    "not_found_title": "Dosya bulunamadı!",
+    "not_found_msg": "Dosya FILE mevcut değil!",
+    "not_found_needed": "OPTIX'in kararlı çalışması için gereklidir.",
+    "option_show": "Dosyayı Explorer'da göster",
+    "option_create": "Bu klasörde FILE oluştur",
+    "option_back": "Menüye dön",
+    "explorer_opened": "Explorer açıldı. Enter'a basın...",
+    "created": "Dosya oluşturuldu!",
+    "path": "Yol",
+    "press_enter": "Enter'a basın...",
+    "launching": "Yeni pencerede FILE başlatılıyor. Menüye dönülüyor...",
+    "dev_notice": "'OPTIX' bölümü geliştirme aşamasında."
+  },
+  "common": {
+    "enter_to_return": "Menüye dönmek için Enter'a basın...",
+    "esc_to_return": "(Geri için Esc)",
+    "enter_save_esc_cancel": "(Enter - kaydet, Esc - iptal)",
+    "enter_confirm_esc_cancel": "(Enter - onayla, Esc - iptal)",
+    "enter_next_esc_back": "(Enter - sonraki, Esc - geri)",
+    "choose": "Seç (1-4):",
+    "yes": "Evet",
+    "no": "Hayır",
+    "ok": "Tamam",
+    "error": "HATA",
+    "info": "BİLGİ",
+    "warning": "UYARI"
+  },
+  "exit": {
+    "closing": "3 saniye içinde kapanıyor...",
+    "thanks": "OPTIX'i kullandığınız için teşekkürler!",
+    "goodbye": "Güle güle!"
+  },
+  "footer": {
+    "navigation": "[v/^] veya [oklar] - seç   |   [Enter] - onayla   |   [Esc] - çıkış"
+  }
+}

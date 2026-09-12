@@ -1,0 +1,245 @@
+﻿{
+  "_meta": {
+    "name": "Spanish",
+    "native_name": "Español",
+    "code": "es"
+  },
+  "menu": {
+    "game_mode": "Modo Juego",
+    "normal_mode": "Modo Normal",
+    "settings": "Ajustes",
+    "optix": "OPTIX",
+    "exit": "Salir"
+  },
+  "loading": {
+    "initializing": "Inicializando...",
+    "checking_encoding": "Verificando codificación...",
+    "loading_config": "Cargando configuración...",
+    "preparing_ui": "Preparando interfaz...",
+    "done": "¡Hecho!",
+    "loading": "Cargando..."
+  },
+  "settings": {
+    "main": "Ajustes",
+    "customization": "Personalización de interfaz",
+    "cleanup": "Limpieza de basura",
+    "cleanup_lists": "Listas de limpieza (Procesos)",
+    "mini_games": "Mini-juegos",
+    "language": "Idioma"
+  },
+  "customization": {
+    "main": "Personalización",
+    "color_theme": "Esquema de color",
+    "color_effects": "Efectos de color (onda/pulso/arcoíris)",
+    "custom_rgb": "Color RGB personalizado",
+    "game_styles": "Estilos de juegos",
+    "ascii_animation": "Animación ASCII",
+    "boot_screen": "Pantalla de inicio"
+  },
+  "colors": {
+    "select_theme": "Seleccione esquema de color:",
+    "theme_saved": "¡Tema 'THEME' guardado!",
+    "theme_applied": "Tema aplicado.",
+    "themes": {
+      "purple": "Morado",
+      "cyberpunk": "Cyberpunk",
+      "forest": "Bosque",
+      "matrix": "Matriz",
+      "sunset": "Atardecer",
+      "ocean": "Océano",
+      "fire": "Fuego",
+      "gold": "Oro",
+      "synthwave": "Synthwave",
+      "mono": "Mono",
+      "blood": "Sangre",
+      "ice": "Hielo"
+    }
+  },
+  "color_effects": {
+    "main": "Efectos de color",
+    "effect": "Efecto de color",
+    "speed": "Velocidad del efecto",
+    "custom_rgb": "Color RGB personalizado",
+    "reset_rgb": "Restablecer RGB (usar tema)",
+    "current_effect": "Efecto actual",
+    "speed_range": "Rango 0.1..3.0, paso 0.1",
+    "rgb_desc": "Establece color fijo, efectos desactivados",
+    "preview": "Vista previa:",
+    "channel_select": "[Izq/Der] canal  [Arriba/Abajo] cambiar (paso 5, Shift=20)",
+    "rgb_saved": "¡RGB guardado!",
+    "rgb_reset": "RGB restablecido - usando tema.",
+    "speed_saved": "¡Velocidad guardada!",
+    "effects": {
+      "wave": "Onda (seno vertical)",
+      "pulse": "Pulso (respiración)",
+      "flow": "Flujo suave",
+      "rainbow": "Arcoíris (HSL por tiempo)"
+    }
+  },
+  "styles": {
+    "main": "Ajustes de estilo",
+    "claude_crab": "Estilo Cangrejo Claude",
+    "snake": "Estilo Serpiente",
+    "dinosaur": "Estilo Dinosaurio",
+    "select_style": "Seleccione estilo para 'NAME':",
+    "style_saved": "¡Estilo 'NAME' guardado!"
+  },
+  "boot_screen": {
+    "main": "Pantalla de inicio",
+    "current_style": "Estilo actual",
+    "styles": {
+      "full": "Completo (logo + barra de progreso + etapas)",
+      "classic": "Clásico (solo barra de progreso)",
+      "minimal": "Mínimo (solo texto)",
+      "terminals": "Terminales (efecto virus)",
+      "off": "Apagado (inicio rápido)"
+    },
+    "saved": "¡Estilo 'NAME' guardado!"
+  },
+  "animation": {
+    "main": "Animación ASCII",
+    "select": "Seleccione animación ASCII (fondo para juegos):",
+    "saved": "¡Animación 'NAME' guardada!",
+    "effects": {
+      "off": "Apagado",
+      "stars": "Estrellas",
+      "wave": "Onda",
+      "spiral": "Espiral",
+      "matrix": "Matriz",
+      "rain": "Lluvia",
+      "pulse": "Pulso"
+    }
+  },
+  "games": {
+    "main": "Mini-juegos",
+    "snake": "Serpiente",
+    "dinosaur": "Dinosaurio",
+    "claude_crab": "Cangrejo Claude",
+    "score": "Puntuación",
+    "game_over": "FIN DE JUEGO",
+    "your_score": "Tu puntuación",
+    "press_any_key": "Pulse cualquier tecla para salir..."
+  },
+  "snake": {
+    "score": "Puntuación"
+  },
+  "dinosaur": {
+    "controls": "Controles:",
+    "move": "Izq/Der o A/D: Mover",
+    "fire": "Espacio: Saltar"
+  },
+  "cleanup": {
+    "main": "Limpieza de basura",
+    "starting": "Iniciando limpieza de basura...",
+    "user_temp": "TEMP de usuario",
+    "system_temp": "TEMP del sistema",
+    "prefetch": "Prefetch",
+    "dns_cache": "Caché DNS",
+    "recycle_bin": "Papelera",
+    "skipped": "ruta inaccesible, omitido.",
+    "cleaned_files": "archivos eliminados",
+    "freed_mb": "MB liberados",
+    "cleared": "limpiada.",
+    "total_deleted": "Total eliminado",
+    "total_freed": "MB liberados",
+    "press_enter": "Pulse Enter para volver...",
+    "cleanmgr": "Disk Cleanup (cleanmgr) - ALL drives - all categories",
+    "select_none": "[N] Clear selection",
+    "select_all": "[A] Select all",
+    "cancel_hint": "[Esc] Cancel",
+    "nothing_selected": "Nothing selected, nothing to clean.",
+    "start_hint": "[Enter] Start cleaning",
+    "select_title": "Select what to clean (Space - toggle, A - all, N - clear):",
+    "cancelled": "Cleanup cancelled.",
+    "free_gb": "free FREE GB",
+    "drives_title": "Select drives to clean (Space - toggle, A - all, N - clear):",
+    "drive_skipped": "path is on DRIVE;",
+    "system_marker": "System",
+    "drive_unselected": "drive not selected",
+    "cleanmgr_drive_skip": "system drive not selected, skipped.",
+    "summary_after": "Memory after cleanup:",
+    "free": "Free",
+    "ram": "RAM",
+    "used": "Used"
+  },
+  "process_manager": {
+    "title": "Administrador de procesos",
+    "loading": "Cargando y analizando procesos...",
+    "colors_legend": "Colores: Rojo-Críticos, DarkCyan-Sistema, Azul-Microsoft, Blanco-Otros",
+    "controls": "Controles: [Arriba/Abajo/RePag/AvPag] Navegar | [Enter] Seleccionar | [P] Editor",
+    "save_selected": "[9] Guardar seleccionados",
+    "exit": "[Esc] Salir",
+    "critical_warning": "ADVERTENCIA",
+    "critical_msg": "El proceso 'NAME' es crítico para el sistema. Seleccionar este proceso para cualquier lista está bloqueado.",
+    "press_enter": "Pulse Enter para volver...",
+    "save_menu": {
+      "add_to": "¿Añadir SELECTED_COUNT procesos seleccionados a?",
+      "blacklist": "Lista negra (terminar)",
+      "whitelist": "Lista blanca (nunca tocar)",
+      "restartable": "Reiniciables (restaurar después)",
+      "success": "¡Procesos añadidos a FILENAME!",
+      "error_critical": "ERROR: Está intentando añadir el proceso crítico 'NAME' a la lista de terminación. Esta acción está bloqueada para proteger el sistema.",
+      "press_enter": "Pulse Enter para volver..."
+    }
+  },
+  "game_mode": {
+    "activating": "Activando Modo Juego...",
+    "stopping_services": "Deteniendo servicios objetivo...",
+    "service_stopped": "Servicio 'NAME' detenido.",
+    "saving_processes": "Guardando procesos reiniciables...",
+    "process_found": "Proceso 'NAME' encontrado, ruta guardada.",
+    "nothing_to_kill": "Nada que terminar.",
+    "killing_processes": "Terminando todos los procesos (excepto críticos y whitelist)...",
+    "terminated": "Terminados: COUNT procesos.",
+    "auto_tracking": "Seguimiento automático iniciado.",
+    "activated": "¡Modo Juego activado!",
+    "press_enter": "Pulse Enter para volver al menú..."
+  },
+  "normal_mode": {
+    "deactivating": "Desactivando Modo Juego y restaurando...",
+    "tracking_stopped": "Seguimiento en segundo plano detenido.",
+    "not_active": "Modo Juego no estaba activo.",
+    "restoring_processes": "Restaurando procesos guardados...",
+    "launching": "Lanzando 'NAME'...",
+    "restoring_services": "Restaurando servicios detenidos...",
+    "service_started": "Servicio 'NAME' iniciado.",
+    "normal_restored": "Modo normal restaurado.",
+    "press_enter": "Pulse Enter para volver al menú..."
+  },
+  "optix": {
+    "not_found_title": "¡Archivo no encontrado!",
+    "not_found_msg": "¡El archivo FILE no existe!",
+    "not_found_needed": "Es necesario para el funcionamiento estable de OPTIX.",
+    "option_show": "Mostrar archivo en Explorador",
+    "option_create": "Crear FILE en esta carpeta",
+    "option_back": "Volver al menú",
+    "explorer_opened": "Explorador abierto. Pulse Enter...",
+    "created": "¡Archivo creado!",
+    "path": "Ruta",
+    "press_enter": "Pulse Enter...",
+    "launching": "Lanzando FILE en nueva ventana. Volviendo al menú...",
+    "dev_notice": "La sección 'OPTIX' está en desarrollo."
+  },
+  "common": {
+    "enter_to_return": "Pulse Enter para volver al menú...",
+    "esc_to_return": "(Esc para volver)",
+    "enter_save_esc_cancel": "(Enter - guardar, Esc - cancelar)",
+    "enter_confirm_esc_cancel": "(Enter - confirmar, Esc - cancelar)",
+    "enter_next_esc_back": "(Enter - siguiente, Esc - atrás)",
+    "choose": "Elija (1-4):",
+    "yes": "Sí",
+    "no": "No",
+    "ok": "OK",
+    "error": "ERROR",
+    "info": "INFO",
+    "warning": "ADVERTENCIA"
+  },
+  "exit": {
+    "closing": "Cerrando en 3 segundos...",
+    "thanks": "¡Gracias por usar OPTIX!",
+    "goodbye": "¡Adiós!"
+  },
+  "footer": {
+    "navigation": "[v/^] o [flechas] - seleccionar   |   [Enter] - confirmar   |   [Esc] - salir"
+  }
+}

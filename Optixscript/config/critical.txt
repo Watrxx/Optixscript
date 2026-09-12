@@ -1,0 +1,137 @@
+﻿# Этот файл содержит список КРИТИЧЕСКИ важных системных процессов.
+# Процессы из этого списка:
+#   1. Подсвечиваются КРАСНЫМ в Менеджере Процессов.
+#   2. НЕ МОГУТ быть завершены (кнопка выбора заблокирована).
+#   3. НЕ завершаются в Игровом режиме.
+# Удалять или комментировать строки НЕ рекомендуется — это может привести к BSOD.
+# Формат: по одному имени процесса в строку (без .exe).
+
+# --- Ядро и системные службы (завершение = мгновенный BSOD) ---
+System
+smss
+csrss
+wininit
+winlogon
+services
+lsass
+lsaiso
+svchost
+RuntimeBroker
+Wdf01000
+Wdf01000
+fontdrvhost
+WmiPrvSE
+
+# --- Диспетчер памяти и критические драйверы ---
+MemoryCompression
+dwm
+taskhostw
+
+# --- Безопасность / Защита ---
+MsMpEng
+NisSrv
+SecurityHealthService
+MpCmdRun
+MpKsl
+
+# --- Сетевой стек (без них отвалится сеть) ---
+tcpip
+nsiproxy
+netprofm
+nlasvc
+Wcmsvc
+dhcpcore
+
+# --- Plug and Play / Электропитание ---
+PlugPlay
+PowerBrokerUm
+Audiosrv
+AudioEndpointBuilder
+
+# --- Базовые пользовательские (завершение = серый экран / перезагрузка) ---
+explorer
+taskhost
+taskhostw
+StartMenuExperienceHost
+ShellExperienceHost
+SearchUI
+TextInputHost
+ctfmon
+conhost
+LogonUI
+LockApp
+ChsIME
+TabTip
+TabTip32
+notepad
+dllhost
+
+# --- Дисплей / Графика (завершение = потеря рабочего стола) ---
+dwm
+fontdrvhost
+audiodg
+
+# --- Системные утилиты ---
+sihclient
+WerFault
+WerFaultSecure
+wermgr
+dismhost
+TiWorker
+taskmgr
+mmc
+regedit
+cleanmgr
+resmon
+perfmon
+eventvwr
+Taskmgr
+taskmgr
+SgrmBroker
+Sgrm
+Spooler
+wlanext
+WlanSvc
+WlanConn
+
+# --- Windows Update (прерывание может сломать обновления) ---
+wuauclt
+UsoClient
+WaaSMedicSvc
+InstallAgent
+wuapp
+
+# --- Встроенные Microsoft-сервисы (часто критичны) ---
+DeviceCensus
+DiagTrack
+DPS
+WaaSMedicSvc
+W32Time
+Wcmsvc
+WdiSystemHost
+WdiServiceHost
+WpnService
+WpnUserService
+XboxNetApiSvc
+BcastDVRUserService
+OneDriveStandaloneUpdater
+LockApp
+ChsIME
+
+# --- Виртуализация / Hyper-V (если включено — не трогать) ---
+vmicheartbeat
+vmicvss
+vmicshutdown
+vmicrdv
+vmictimesync
+
+# --- Античит (для игр, но критичен во время сессии) ---
+EasyAntiCheat
+EasyAntiCheatSys
+BEService
+BEService_x64
+EAAntiCheat
+anticheat
+anticheat64
+EasyAntiCheat_x64
+BEDaisy
