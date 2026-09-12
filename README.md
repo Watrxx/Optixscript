@@ -28,6 +28,24 @@
 **⚠️ ЭТОТ ПРОЕКТ НА 99.9% ПОСТРОЕН С ПОМОЩЬЮ ИИ.**
 **Автор — не программист, а человек, который руководил ИИ-ассистентами.**
 
+## ⚠️ Disclaimer / Отказ от ответственности
+
+> **This project is provided "as is", without any warranty of any kind.**
+>
+> The author is **NOT responsible** for any consequences of using this
+> software — including system damage, data loss, broken services, or any
+> other problems with your computer or operating system.
+>
+> **You use it entirely at your own risk.**
+
+> **Проект предоставляется «как есть», без каких-либо гарантий.**
+>
+> Автор **НЕ несёт ответственности** за любые последствия использования
+> программы — включая повреждение системы, потерю данных, неработающие
+> службы или другие проблемы с вашим компьютером.
+>
+> **Используйте программу полностью на свой страх и риск.**
+
 [![Platform](https://img.shields.io/badge/Platform-Windows-blue)](https://www.microsoft.com/windows)
 [![Language](https://img.shields.io/badge/Language-PowerShell-5391FE)](https://learn.microsoft.com/powershell/)
 [![License](https://img.shields.io/badge/License-MIT-green)](#license)
@@ -167,27 +185,6 @@ peak of the wave.
 `game_styles.claude_crab.styles` or `game_styles.dinosaur.styles`, or
 an object `{ "head", "body", "food", "color" }` to
 `game_styles.snake.styles`. The new skin will appear in the Style menu.
-
-## Publishing this repo to GitHub
-
-The repository is already set up for GitHub — just follow these steps:
-
-1. Create an empty repository on GitHub (no README, no LICENSE — use
-   the files from this repo).
-2. In the terminal inside this folder:
-   ```
-   git init
-   git add .
-   git commit -m "Initial release of OPTIX"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/optixscript.git
-   git push -u origin main
-   ```
-3. Open the repository page and enjoy.
-
-Before publishing, consider deleting one of the two duplicate copies
-(`Optixscript/` or `Optixscript10/`) — they are identical, and keeping
-only one makes the repository much cleaner.
 
 ## License
 

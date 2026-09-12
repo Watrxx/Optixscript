@@ -28,6 +28,24 @@
 **⚠️ ЭТОТ ПРОЕКТ НА 99.9% ПОСТРОЕН С ПОМОЩЬЮ ИИ.**
 **Автор — не программист, а человек, который руководил ИИ-ассистентами.**
 
+## ⚠️ Disclaimer / Отказ от ответственности
+
+> **This project is provided "as is", without any warranty of any kind.**
+>
+> The author is **NOT responsible** for any consequences of using this
+> software — including system damage, data loss, broken services, or any
+> other problems with your computer or operating system.
+>
+> **You use it entirely at your own risk.**
+
+> **Проект предоставляется «как есть», без каких-либо гарантий.**
+>
+> Автор **НЕ несёт ответственности** за любые последствия использования
+> программы — включая повреждение системы, потерю данных, неработающие
+> службы или другие проблемы с вашим компьютером.
+>
+> **Используйте программу полностью на свой страх и риск.**
+
 **OPTIX** is a PowerShell-based toolkit for Windows that helps you clean up
 junk files, manage running processes, stop background services for gaming,
 and play a few small built-in mini-games — all from a single animated

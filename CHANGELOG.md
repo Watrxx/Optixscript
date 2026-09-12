@@ -10,7 +10,6 @@ currently contain identical code; the changelog applies to both.
 
 ## [Unreleased]
 
-- Publish the project to GitHub.
 - Clean up the duplicate copy (keep only `Optixscript10`).
 
 ## [1.0.0] - 2026-09-12

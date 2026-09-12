@@ -10,7 +10,7 @@ to handle.
 ## Before you start
 
 - Please be kind. This is a learning project; code style may be unusual.
-- Check the [existing issues](https://github.com/YOUR_USERNAME/optixscript/issues)
+- Check the [existing issues](https://github.com/Watrxx/Optixscript/issues)
   to avoid duplicates.
 - For large changes, open an issue or discussion first so we agree on the
   direction before you invest time.
