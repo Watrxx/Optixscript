@@ -61,12 +61,16 @@ function Show-LoadingAnimation {
 
     [Console]::CursorVisible = $false
 
+    # Логотип OPTIX (ASCII). Раньше здесь был старый логотип "TREASURE".
     $logo = @(
-        "   _____ ____  _____   _    ____  _   _ ____  ",
-        "  |_   _|  _ \| ____| / \  |  _ \| | | / ___| ",
-        "    | | | |_) |  _|  / _ \ | |_) | | | \___ \ ",
-        "    | | |  _ <| |___/ ___ \|  _ <| |_| |___) |",
-        "    |_| |_| \_\____/_/   \_\_| \_\\___/|____/ "
+        "    /██████  /███████  /████████ /██████ /██   /██",
+        "   /██__  ██| ██__  ██|__  ██__/|_  ██_/| ██  / ██",
+        "  | ██  \ ██| ██  \ ██   | ██     | ██  |  ██/ ██/",
+        "  | ██  | ██| ███████/   | ██     | ██   \  ████/",
+        "  | ██  | ██| ██____/    | ██     | ██    >██  ██",
+        "  | ██  | ██| ██         | ██     | ██   /██/\  ██",
+        "  |  ██████/| ██         | ██    /██████| ██  \ ██",
+        "   \______/ |__/         |__/   |______/|__/  |__/"
     )
     $sub = "   Windows Performance & Game Optimization Suite"
     $steps = @(
@@ -354,6 +358,8 @@ $restartableFile = "$configPath\restartable.txt"
 $servicesFile = "$configPath\services.txt"
 $sessionFile = "$configPath\session.json"
 $gameJobName = "OptixGameModeJob"
+$blacklistJobName = "OptixBlacklistGuardJob"
+$global:blacklistGuard = @()
 $langDir = "$configPath\lang"
 
 # --- СИСТЕМА ПЕРЕВОДОВ ---
@@ -956,11 +962,11 @@ function Start-GameMode {
     $sessionData = @{ RestartableProcesses = @{}; StoppedServices = @() }
     Write-Host "`n   [.] $(T('game_mode.stopping_services'))"; foreach ($serviceName in $global:services) {
         $service = Get-Service -Name $serviceName -ErrorAction SilentlyContinue
-        if ($service -and $service.Status -eq 'Running') { Stop-Service -Name $serviceName -Force -ErrorAction SilentlyContinue; $sessionData.StoppedServices += $serviceName; Write-Host "   - $(T('game_mode.service_stopped') -replace 'NAME', $serviceName)" -ForegroundColor Cyan }
+        if ($service -and $service.Status -eq 'Running') { Stop-Service -Name $serviceName -Force -ErrorAction SilentlyContinue; $sessionData.StoppedServices += $serviceName; Write-Host "   - $((T('game_mode.service_stopped')) -replace 'NAME', $serviceName)" -ForegroundColor Cyan }
     }
     Write-Host "`n   [.] $(T('game_mode.saving_processes'))"; foreach ($procName in $global:restartable) {
         $process = Get-Process -Name $procName -ErrorAction SilentlyContinue
-        if ($process) { $path = $process[0].Path; if ($path) { $sessionData.RestartableProcesses[$procName] = $path; Write-Host "   - $(T('game_mode.process_found') -replace 'NAME', $procName)" -ForegroundColor Cyan } }
+        if ($process) { $path = $process[0].Path; if ($path) { $sessionData.RestartableProcesses[$procName] = $path; Write-Host "   - $((T('game_mode.process_found')) -replace 'NAME', $procName)" -ForegroundColor Cyan } }
     }
     $sessionData | ConvertTo-Json -Depth 3 | Out-File $sessionFile -Encoding utf8
     $allProcs = Get-Process | Where-Object { $_.Name -notin $global:whitelist -and $_.Name -notin $global:criticalProcessNames } | Select-Object -ExpandProperty Name -Unique
@@ -969,7 +975,7 @@ function Start-GameMode {
         Write-Host "`n   [.] $(T('game_mode.killing_processes'))"
         $count = 0
         foreach ($procName in $allProcs) { taskkill /F /T /IM "$procName.exe" *> $null 2>$null; $count++ }
-        Write-Host "   - $(T('game_mode.terminated') -replace 'COUNT', $count)" -ForegroundColor Green
+        Write-Host "   - $((T('game_mode.terminated')) -replace 'COUNT', $count)" -ForegroundColor Green
         Write-Log -Action "GAMEMODE_KILL" -Details "Count=$count | Processes=$($allProcs -join ',')"
         $scriptBlock = { param($critical, $whitelist) while ($true) { $live = Get-Process | Where-Object { $_.Name -notin $critical -and $_.Name -notin $whitelist } | Select-Object -ExpandProperty Name -Unique; foreach ($n in $live) { taskkill /F /T /IM "$n.exe" *> $null 2>$null }; Start-Sleep -Seconds 3 } }
         Start-Job -ScriptBlock $scriptBlock -ArgumentList (,$global:criticalProcessNames), (,$global:whitelist) -Name $gameJobName | Out-Null
@@ -995,7 +1001,7 @@ function Stop-GameMode {
             $restored = 0
             foreach ($entry in $sessionData.RestartableProcesses.psobject.Properties) {
                 $procName = $entry.Name; $path = $entry.Value
-                if (-not (Get-Process -Name $procName -ErrorAction SilentlyContinue)) { if (-not $Silent) { Write-Host "   - $(T('normal_mode.launching') -replace 'NAME', $procName)" -ForegroundColor Cyan }; Start-Process -FilePath $path -WindowStyle Minimized; $restored++ }
+                if (-not (Get-Process -Name $procName -ErrorAction SilentlyContinue)) { if (-not $Silent) { Write-Host "   - $((T('normal_mode.launching')) -replace 'NAME', $procName)" -ForegroundColor Cyan }; Start-Process -FilePath $path -WindowStyle Minimized; $restored++ }
             }
             Write-Log -Action "RESTORE_PROCS" -Details "Restored=$restored"
         }
@@ -1004,7 +1010,7 @@ function Stop-GameMode {
             $svcRestored = 0
             foreach ($serviceName in $sessionData.StoppedServices) {
                 $service = Get-Service -Name $serviceName -ErrorAction SilentlyContinue
-                if ($service -and $service.Status -ne 'Running') { Start-Service -Name $serviceName -ErrorAction SilentlyContinue; if (-not $Silent) { Write-Host "   - $(T('normal_mode.service_started') -replace 'NAME', $serviceName)" -ForegroundColor Cyan }; $svcRestored++ }
+                if ($service -and $service.Status -ne 'Running') { Start-Service -Name $serviceName -ErrorAction SilentlyContinue; if (-not $Silent) { Write-Host "   - $((T('normal_mode.service_started')) -replace 'NAME', $serviceName)" -ForegroundColor Cyan }; $svcRestored++ }
             }
             Write-Log -Action "RESTORE_SERVICES" -Details "Services=$($sessionData.StoppedServices -join ',') | Restored=$svcRestored"
         }
@@ -1023,7 +1029,7 @@ function Show-OptixMenu {
         Write-Host "   [!] $(T('optix.not_found_title'))" -ForegroundColor Red
         Write-Host "   $(T('optix.not_found_needed'))" -ForegroundColor Yellow
         Write-Host "   1 - $(T('optix.option_show'))" -ForegroundColor Cyan
-        Write-Host "   2 - $(T('optix.option_create') -replace 'FILE', 'run_optix.bat')" -ForegroundColor Cyan
+        Write-Host "   2 - $((T('optix.option_create')) -replace 'FILE', 'run_optix.bat')" -ForegroundColor Cyan
         Write-Host "   3 - $(T('optix.option_back'))" -ForegroundColor Gray
         Write-Host ""
 
@@ -1144,7 +1150,7 @@ exit /b %EXITCODE%
     } else {
         Start-Process cmd.exe -ArgumentList "/c", "`"$runBat`"" | Out-Null
     }
-    Write-Host "`n   [OK] $(T('optix.launching') -replace 'FILE', 'run_optix.bat')" -ForegroundColor Green
+    Write-Host "`n   [OK] $((T('optix.launching')) -replace 'FILE', 'run_optix.bat')" -ForegroundColor Green
     Start-Sleep -Milliseconds 800
     # БАГФИКС: раньше новое окно OPTIX просто открывалось поверх текущего, и оставались
     # две копии. Теперь закрываем текущий экземпляр — это настоящий RESTART.
@@ -1154,6 +1160,83 @@ exit /b %EXITCODE%
 }
 
 # --- МЕНЮ И ИГРЫ ---
+
+# --- Крупный "блочный" шрифт для заголовка предупреждения (в стиле GAME OVER) ---
+# Хватает символов, которые встречаются в переводах слова "ПРЕДУПРЕЖДЕНИЕ"/"WARNING".
+$global:blockFont = @{
+    'П' = @('#####','#   #','#   #','#   #','#   #','#   #','#   #')
+    'Р' = @('#### ','#   #','#   #','#### ','#    ','#    ','#    ')
+    'Е' = @('#####','#    ','#    ','#### ','#    ','#    ','#####')
+    'Д' = @('#####','#   #','#   #','#   #','#   #','#####','#   #')
+    'У' = @('#   #','#   #',' # # ','  #  ','  #  ',' #   ','#    ')
+    'Ж' = @('# # #','# # #','# # #','#####','# # #','# # #','# # #')
+    'Н' = @('#   #','#   #','#   #','#####','#   #','#   #','#   #')
+    'И' = @('#   #','#   #','##  #','# # #','#  ##','#   #','#   #')
+    'W' = @('#   #','#   #','#   #','#   #','# # #','# # #',' # # ')
+    'A' = @(' ### ','#   #','#   #','#####','#   #','#   #','#   #')
+    'R' = @('#### ','#   #','#   #','#### ','#  # ','#   #','#   #')
+    'N' = @('#   #','#   #','#   #','#####','#   #','#   #','#   #')
+    'I' = @('#####','  #  ','  #  ','  #  ','  #  ','  #  ','#####')
+    'G' = @(' ####','#    ','#    ','#  ##','#   #','#   #',' ### ')
+    'T' = @('#####','  #  ','  #  ','  #  ','  #  ','  #  ','  #  ')
+    'O' = @(' ### ','#   #','#   #','#   #','#   #','#   #',' ### ')
+    'S' = @(' ####','#    ','#    ',' ### ','    #','    #','#### ')
+    ' ' = @('   ','   ','   ','   ','   ','   ','   ')
+}
+
+function Get-BlockBanner {
+    param([string]$Text, [switch]$Compact)
+    if ([string]::IsNullOrWhiteSpace($Text)) { return $null }
+    $rows = @('', '', '', '', '', '', '')
+    foreach ($ch in $Text.ToUpperInvariant().ToCharArray()) {
+        $key = [string]$ch
+        if (-not $global:blockFont.ContainsKey($key)) { return $null }
+        $glyph = $global:blockFont[$key]
+        for ($r = 0; $r -lt 7; $r++) {
+            if ($rows[$r].Length -gt 0 -and -not $Compact) { $rows[$r] += ' ' }
+            $rows[$r] += $glyph[$r]
+        }
+    }
+    return $rows
+}
+
+# --- Завершение задач из blacklist.txt ---
+# Раньше список "Blacklist (kill)" только сохранялся в файл и больше нигде не
+# использовался: процессы не завершались. Теперь сохранение сразу завершает их и
+# запускает фоновый сторож, который убивает их снова, если они перезапустятся.
+function Start-BlacklistGuard {
+    param([string[]]$Processes)
+    $existing = Get-Job -Name $blacklistJobName -ErrorAction SilentlyContinue
+    if ($existing) { Stop-Job -Job $existing -ErrorAction SilentlyContinue; Remove-Job -Job $existing -Force -ErrorAction SilentlyContinue }
+    $source = if ($Processes -and $Processes.Count -gt 0) { $Processes } else { @($global:blacklist) }
+    if (-not $source) { return }
+    # Не убиваем сам OPTIX/powershell и системную оболочку.
+    $safety = @('powershell','pwsh','conhost','cmd','windowsterminal','openconsole','system','idle','services','wininit')
+    $list = @($source | Where-Object { $_ -and $_.Trim().Length -gt 0 -and $safety -notcontains $_.ToLowerInvariant() } | Select-Object -Unique)
+    if ($list.Count -eq 0) { return }
+    $selfPid = $PID
+    foreach ($name in $list) {
+        Get-Process -Name $name -ErrorAction SilentlyContinue | Where-Object { $_.Id -ne $selfPid } | Stop-Process -Force -ErrorAction SilentlyContinue
+    }
+    $scriptBlock = {
+        param($names, $selfPid)
+        while ($true) {
+            foreach ($n in $names) {
+                try {
+                    $procs = Get-Process -Name $n -ErrorAction SilentlyContinue | Where-Object { $_.Id -ne $selfPid }
+                    if ($procs) { $procs | Stop-Process -Force -ErrorAction SilentlyContinue }
+                } catch { }
+            }
+            Start-Sleep -Seconds 2
+        }
+    }
+    Start-Job -ScriptBlock $scriptBlock -ArgumentList (,$list), $selfPid -Name $blacklistJobName | Out-Null
+}
+
+function Stop-BlacklistGuard {
+    $job = Get-Job -Name $blacklistJobName -ErrorAction SilentlyContinue
+    if ($job) { Stop-Job -Job $job -ErrorAction SilentlyContinue; Remove-Job -Job $job -Force -ErrorAction SilentlyContinue }
+}
 
 function Show-ProcessManager {
     Clear-Host
@@ -1194,12 +1277,42 @@ function Show-ProcessManager {
         $controlsLabel = T("process_manager.controls")
         $saveSelLabel = T("process_manager.save_selected")
         $exitLabel = T("process_manager.exit")
-        $colorLine = ("+ " + $colorsLabel).PadRight($consoleWidth - 1) + "+"
+        $colorLinePlain = "+ " + $colorsLabel
         $controlsLine1 = ("+ " + $controlsLabel).PadRight($consoleWidth - 1) + "+"
         $controlsLine2 = ("+             " + $saveSelLabel + " | " + $exitLabel).PadRight($consoleWidth - 1) + "+"
 
         Write-Host $topBorder -ForegroundColor Gray
-        Write-Host $colorLine -ForegroundColor Gray
+
+        # Легенда цветов: английские названия цветов печатаем их же цветом
+        # (Red - красным, DarkCyan - тёмно-бирюзовым, Blue - синим, White - белым).
+        $legendMatches = [regex]::Matches($colorsLabel, '(DarkCyan|Red|Blue|White)-')
+        Write-Host "+ " -ForegroundColor Gray -NoNewline
+        if ($legendMatches.Count -gt 0) {
+            $legendCursor = 0
+            for ($mi = 0; $mi -lt $legendMatches.Count; $mi++) {
+                $m = $legendMatches[$mi]
+                if ($m.Index -gt $legendCursor) {
+                    Write-Host $colorsLabel.Substring($legendCursor, $m.Index - $legendCursor) -ForegroundColor Gray -NoNewline
+                }
+                $segEnd = if ($mi + 1 -lt $legendMatches.Count) { $legendMatches[$mi + 1].Index } else { $colorsLabel.Length }
+                $segText = $colorsLabel.Substring($m.Index, $segEnd - $m.Index)
+                $trail = ""
+                while ($segText.Length -gt 0 -and ($segText.EndsWith(",") -or $segText.EndsWith(" "))) {
+                    $trail = $segText.Substring($segText.Length - 1) + $trail
+                    $segText = $segText.Substring(0, $segText.Length - 1)
+                }
+                Write-Host $segText -ForegroundColor $m.Groups[1].Value -NoNewline
+                if ($trail.Length -gt 0) { Write-Host $trail -ForegroundColor Gray -NoNewline }
+                $legendCursor = $segEnd
+            }
+            if ($legendCursor -lt $colorsLabel.Length) {
+                Write-Host $colorsLabel.Substring($legendCursor) -ForegroundColor Gray -NoNewline
+            }
+        } else {
+            Write-Host $colorsLabel -ForegroundColor Gray -NoNewline
+        }
+        Write-Host ((" " * [Math]::Max(0, ($consoleWidth - 1) - $colorLinePlain.Length)) + "+") -ForegroundColor Gray
+
         Write-Host $controlsLine1 -ForegroundColor Gray
         Write-Host $controlsLine2 -ForegroundColor Gray
         Write-Host $bottomBorder -ForegroundColor Gray
@@ -1252,11 +1365,48 @@ function Show-ProcessManager {
                 $proc = $processDetails[$currentIndex]
                 if ($proc.IsCritical) {
                     Clear-Host
-                    Write-Host "`n`n`n"
-                    Write-Host "==================== $(T('process_manager.critical_warning')) ====================" -ForegroundColor Red
-                    Write-Host "  $(T('process_manager.critical_msg') -replace 'NAME', $proc.Name)" -ForegroundColor Yellow
-                    Write-Host "========================================================" -ForegroundColor Red
-                    Read-Host "`n  $(T('process_manager.press_enter'))"
+                    $warnTitle = T('process_manager.critical_warning')
+                    $warnMsg = (T('process_manager.critical_msg')) -replace 'NAME', $proc.Name
+                    $winWidth = [Console]::WindowWidth
+                    $banner = Get-BlockBanner $warnTitle
+                    $bannerWidth = if ($banner) { ($banner | Measure-Object -Property Length -Maximum).Maximum } else { 0 }
+                    if ($banner -and (($bannerWidth + 4) -gt $winWidth)) {
+                        # На узком экране печатаем буквы вплотную, чтобы арт всё равно влез.
+                        $banner = Get-BlockBanner $warnTitle -Compact
+                        $bannerWidth = if ($banner) { ($banner | Measure-Object -Property Length -Maximum).Maximum } else { 0 }
+                    }
+                    Write-Host ""
+                    if ($banner -and ($bannerWidth + 2) -le $winWidth) {
+                        # Заголовок тем же "блочным" стилем, что и GAME OVER в мини-играх.
+                        $bannerIndent = [int](($winWidth - $bannerWidth) / 2)
+                        foreach ($bLine in $banner) {
+                            Write-Host ((" " * $bannerIndent) + $bLine) -ForegroundColor Red
+                        }
+                    } else {
+                        # Узкий экран / неизвестный алфавит — рамка с названием.
+                        $frame = "=" * [Math]::Max(10, [Math]::Min($winWidth - 4, ($warnTitle.Length + 8)))
+                        Write-Host ("  " + $frame) -ForegroundColor Red
+                        Write-Host ("  " + $warnTitle) -ForegroundColor Red
+                        Write-Host ("  " + $frame) -ForegroundColor Red
+                    }
+                    Write-Host ""
+                    # Перенос текста по словам, чтобы сообщение не уезжало за край экрана.
+                    $maxMsgWidth = [Math]::Max(20, $winWidth - 6)
+                    $msgLine = "  "
+                    foreach ($word in $warnMsg.Split(' ')) {
+                        if ((($msgLine.Length + $word.Length + 1) -gt $maxMsgWidth) -and ($msgLine.Trim().Length -gt 0)) {
+                            Write-Host $msgLine -ForegroundColor Yellow
+                            $msgLine = "  " + $word + " "
+                        } else {
+                            $msgLine += $word + " "
+                        }
+                    }
+                    if ($msgLine.Trim().Length -gt 0) { Write-Host $msgLine -ForegroundColor Yellow }
+                    Write-Host ""
+                    Read-Host "  $(T('process_manager.press_enter'))"
+                    # Полная очистка: иначе от диалога остаются куски справа при возврате.
+                    Clear-Host
+                    [Console]::SetCursorPosition(0, 0)
                     continue
                 }
 
@@ -1279,7 +1429,7 @@ function Show-SaveSubMenu {
     $selectedIndex = 0
     while ($true) {
         Clear-Host
-        Write-Host "$(T('process_manager.save_menu.add_to') -replace 'SELECTED_COUNT', ($SelectedProcesses).Length)" -ForegroundColor Yellow
+        Write-Host "$((T('process_manager.save_menu.add_to')) -replace 'SELECTED_COUNT', ($SelectedProcesses).Length)" -ForegroundColor Yellow
         for ($i = 0; $i -lt $saveOptions.Length; $i++) {
             $line = "  " + $(if ($i -eq $selectedIndex) { "> $($saveOptions[$i])" } else { "  $($saveOptions[$i])" })
             Write-Host $line
@@ -1294,7 +1444,7 @@ function Show-SaveSubMenu {
                     foreach ($proc in $SelectedProcesses) {
                         if ($global:criticalProcessNames -contains $proc) {
                             Clear-Host
-                            Write-Host "`n$(T('process_manager.save_menu.error_critical') -replace 'NAME', $proc)" -ForegroundColor Red
+                            Write-Host "`n$((T('process_manager.save_menu.error_critical')) -replace 'NAME', $proc)" -ForegroundColor Red
                             Read-Host "`n$(T('process_manager.save_menu.press_enter'))"
                             return
                         }
@@ -1303,7 +1453,18 @@ function Show-SaveSubMenu {
                 $existing = if (Test-Path $targetFile) { Get-Content $targetFile } else { @() }
                 $combined = ($existing + $SelectedProcesses) | Select-Object -Unique
                 $combined | Out-File $targetFile -Encoding utf8
-                Write-Host "`n$(T('process_manager.save_menu.success') -replace 'FILENAME', (Split-Path $targetFile -Leaf))" -ForegroundColor Green
+                # Blacklist = "завершить": применяем сразу и держим процессы завершёнными,
+                # пока работает OPTIX (перезапустившиеся задачи снова закрываются).
+                if ($targetFile -eq $blacklistFile) {
+                    $global:blacklist = @(Get-Content $blacklistFile | Where-Object { $_ -notmatch '^\s*#' } | ForEach-Object { Normalize-ProcessName $_ } | Where-Object { $_ -ne '' })
+                    # Запоминаем выбранное в этой сессии: именно эти задачи держим завершёнными.
+                    $global:blacklistGuard = @(@($global:blacklistGuard) + @($SelectedProcesses) | Where-Object { $_ } | Select-Object -Unique)
+                    Start-BlacklistGuard -Processes $global:blacklistGuard
+                    Write-Host "`n$((T('process_manager.save_menu.success')) -replace 'FILENAME', (Split-Path $targetFile -Leaf))" -ForegroundColor Green
+                    Write-Log -Action "BLACKLIST_KILL" -Details "Processes=$($global:blacklistGuard -join ',')"
+                } else {
+                    Write-Host "`n$((T('process_manager.save_menu.success')) -replace 'FILENAME', (Split-Path $targetFile -Leaf))" -ForegroundColor Green
+                }
                 Start-Sleep -Seconds 2; return
             }
             "Escape"    { return }
@@ -1329,7 +1490,7 @@ function Show-ColorThemeMenu {
         switch ($key.Key) {
             "UpArrow"   { $currentThemeIndex = ($currentThemeIndex - 1 + $themeNames.Length) % $themeNames.Length }
             "DownArrow" { $currentThemeIndex = ($currentThemeIndex + 1) % $themeNames.Length }
-            "Enter"     { $global:settings.color_theme = $themeNames[$currentThemeIndex]; Save-Settings; $tn = $themeNames[$currentThemeIndex]; $tnDisplay = T("colors.themes.$tn"); if ($tnDisplay -eq "colors.themes.$tn") { $tnDisplay = $tn }; Write-Host "`n`n   $(T('colors.theme_saved') -replace 'THEME', $tnDisplay)" -ForegroundColor Green; Write-Log -Action "THEME_SET" -Details "Theme=$($themeNames[$currentThemeIndex])"; Start-Sleep -Seconds 1; return }
+            "Enter"     { $global:settings.color_theme = $themeNames[$currentThemeIndex]; Save-Settings; $tn = $themeNames[$currentThemeIndex]; $tnDisplay = T("colors.themes.$tn"); if ($tnDisplay -eq "colors.themes.$tn") { $tnDisplay = $tn }; Write-Host "`n`n   $((T('colors.theme_saved')) -replace 'THEME', $tnDisplay)" -ForegroundColor Green; Write-Log -Action "THEME_SET" -Details "Theme=$($themeNames[$currentThemeIndex])"; Start-Sleep -Seconds 1; return }
             "Escape"    { return }
         }
     }
@@ -1581,6 +1742,22 @@ function Start-ClaudeCrabGame {
     # пикселей — стирание рисовало прямоугольник уже, чем реальный спрайт.
     $playerWidth = ($playerArt | ForEach-Object { $_.Length } | Measure-Object -Maximum).Maximum
     $playerHeight = $playerArt.Length
+    # БАГФИКС (стрельба не по центру): ширина спрайта включает хвостовые пробелы,
+    # поэтому [int]($playerWidth/2) уводил пулю вправо. Считаем центр по реальным
+    # (не пробельным) символам выбранного скина.
+    $artMinX = $playerWidth
+    $artMaxX = -1
+    for ($row = 0; $row -lt $playerHeight; $row++) {
+        $rowText = $playerArt[$row]
+        for ($col = 0; $col -lt $rowText.Length; $col++) {
+            if ($rowText[$col] -ne ' ') {
+                if ($col -lt $artMinX) { $artMinX = $col }
+                if ($col -gt $artMaxX) { $artMaxX = $col }
+            }
+        }
+    }
+    if ($artMaxX -lt 0) { $artMinX = 0; $artMaxX = $playerWidth - 1 }
+    $muzzleOffset = [int][Math]::Round(($artMinX + $artMaxX) / 2)
     $player = [pscustomobject]@{ X = [int](($width - $playerWidth)/2); Y = $height - $playerHeight; Color = "221;127;97" }
     $oldPlayerX = $player.X
 
@@ -1602,7 +1779,7 @@ function Start-ClaudeCrabGame {
             $key = [Console]::ReadKey($true).Key
             if (($key -eq 'LeftArrow' -or $key -eq 'A') -and $player.X -gt 1) { $player.X-- }
             if (($key -eq 'RightArrow' -or $key -eq 'D') -and $player.X -lt ($width - $playerWidth)) { $player.X++ }
-            if ($key -eq 'Spacebar') { $projectiles.Add([pscustomobject]@{X=$player.X + [int]($playerWidth/2); Y=$player.Y-1}) }
+            if ($key -eq 'Spacebar') { $projectiles.Add([pscustomobject]@{X=$player.X + $muzzleOffset; Y=$player.Y-1}) }
             if ($key -eq 'Escape') { break }
         }
 
@@ -1819,7 +1996,7 @@ function Show-StyleSelectionMenu {
         Clear-Host
         $gameDisplayName = T("styles.$gameName")
         if ($gameDisplayName -eq "styles.$gameName") { $gameDisplayName = $gameName }
-        Write-Host "`n   $(T('styles.select_style') -replace 'NAME', $gameDisplayName)`n" -ForegroundColor White
+        Write-Host "`n   $((T('styles.select_style')) -replace 'NAME', $gameDisplayName)`n" -ForegroundColor White
         for ($i = 0; $i -lt $styleOptions.Length; $i++) {
             $line = "  " + $(if ($i -eq $selectedIndex) { "> $($styleOptions[$i])" } else { "  $($styleOptions[$i])" })
             Write-Host $line
@@ -1841,7 +2018,7 @@ function Show-StyleSelectionMenu {
             "Enter"     {
                 $global:settings.game_styles.$gameName.current = $styleOptions[$selectedIndex]
                 Save-Settings
-                Write-Host "`n   $(T('styles.style_saved') -replace 'NAME', $styleOptions[$selectedIndex])" -ForegroundColor Green
+                Write-Host "`n   $((T('styles.style_saved')) -replace 'NAME', $styleOptions[$selectedIndex])" -ForegroundColor Green
                 Write-Log -Action "GAME_STYLE_SET" -Details "Game=$gameName | Style=$($styleOptions[$selectedIndex])"
                 Start-Sleep -Seconds 1
                 return
@@ -1926,7 +2103,7 @@ function Invoke-CleanMgr {
         return
     }
 
-    Write-Host "   - $(T('cleanup.cleanmgr_categories') -replace 'COUNT', $enabled)" -ForegroundColor Cyan
+    Write-Host "   - $((T('cleanup.cleanmgr_categories')) -replace 'COUNT', $enabled)" -ForegroundColor Cyan
 
     try {
         $p = Start-Process -FilePath $cleanmgr -ArgumentList "/sagerun:$tag" -Wait -PassThru -ErrorAction Stop
@@ -2086,7 +2263,7 @@ function Clean-Junk {
                 # Проверяем, что диск, на котором лежит папка, выбран пользователем
                 $targetDrive = (Split-Path -Qualifier $t.Path)
                 if ($targetDrive -notin $selectedDrives) {
-                    Write-Host "   - $($t.Label): $(T('cleanup.drive_skipped') -replace 'DRIVE', $targetDrive) ($(T('cleanup.drive_unselected')))" -ForegroundColor DarkCyan
+                    Write-Host "   - $($t.Label): $((T('cleanup.drive_skipped')) -replace 'DRIVE', $targetDrive) ($(T('cleanup.drive_unselected')))" -ForegroundColor DarkCyan
                     Write-Log -Action "CLEAN_SKIP_DRIVE" -Details "Target=$($t.Label) | Drive=$targetDrive"
                     continue
                 }
@@ -2234,7 +2411,7 @@ function Set-ColorEffectInteractive {
             "Enter" {
                 $global:settings.color_effect = $effects[$idx].Name
                 Save-Settings
-                Write-Host "`n   [OK] $($effects[$idx].Description) - $(T('colors.theme_saved') -replace 'THEME','')" -ForegroundColor Green
+                Write-Host "`n   [OK] $($effects[$idx].Description) - $((T('colors.theme_saved')) -replace 'THEME','')" -ForegroundColor Green
                 Write-Log -Action "COLOR_EFFECT_SET" -Details "Effect=$($effects[$idx].Name)"
                 Start-Sleep -Seconds 1
                 return
@@ -2350,9 +2527,14 @@ function Show-BootScreenMenu {
         }
         $previewLines = switch ($bootStyles[$idx].Name) {
             "full"    { @(
-                "   _____ ____  _____   _    ____  _   _ ____  ",
-                "  |_   _|  _ \| ____| / \  |  _ \| | | / ___| ",
-                "    | | | |_) |  _|  / _ \ | |_) | | | \___ \ ",
+                "    /██████  /███████  /████████ /██████ /██   /██",
+                "   /██__  ██| ██__  ██|__  ██__/|_  ██_/| ██  / ██",
+                "  | ██  \ ██| ██  \ ██   | ██     | ██  |  ██/ ██/",
+                "  | ██  | ██| ███████/   | ██     | ██   \  ████/",
+                "  | ██  | ██| ██____/    | ██     | ██    >██  ██",
+                "  | ██  | ██| ██         | ██     | ██   /██/\  ██",
+                "  |  ██████/| ██         | ██    /██████| ██  \ ██",
+                "   \______/ |__/         |__/   |______/|__/  |__/",
                 "    =========================================",
                 "    [████████████████████░░░░░░░░░░░░░] 67%  ",
                 "    Stage: Preparing interface...            "
@@ -2386,7 +2568,7 @@ function Show-BootScreenMenu {
             "Enter" {
                 $global:settings.boot_style = $bootStyles[$idx].Name
                 Save-Settings
-                Write-Host "`n   [OK] $(T('boot_screen.saved') -replace 'NAME', $bootStyles[$idx].Name)" -ForegroundColor Green
+                Write-Host "`n   [OK] $((T('boot_screen.saved')) -replace 'NAME', $bootStyles[$idx].Name)" -ForegroundColor Green
                 Write-Log -Action "BOOT_STYLE_SET" -Details "Style=$($bootStyles[$idx].Name)"
                 Start-Sleep -Seconds 1
                 return
@@ -2425,7 +2607,7 @@ function Show-AnimationStyleMenu {
         switch ($key.Key) {
             "UpArrow"   { $currentIndex = ($currentIndex - 1 + $animations.Length) % $animations.Length }
             "DownArrow" { $currentIndex = ($currentIndex + 1) % $animations.Length }
-            "Enter"     { $global:settings.animation_style = $animations[$currentIndex]; Save-Settings; $an = $animations[$currentIndex]; $and = T("animation.effects.$an"); if ($and -eq "animation.effects.$an") { $and = $an }; Write-Host "`n   $(T('animation.saved') -replace 'NAME', $and)" -ForegroundColor Green; Write-Log -Action "ANIMATION_SET" -Details "Animation=$an"; Start-Sleep -Seconds 1; return }
+            "Enter"     { $global:settings.animation_style = $animations[$currentIndex]; Save-Settings; $an = $animations[$currentIndex]; $and = T("animation.effects.$an"); if ($and -eq "animation.effects.$an") { $and = $an }; Write-Host "`n   $((T('animation.saved')) -replace 'NAME', $and)" -ForegroundColor Green; Write-Log -Action "ANIMATION_SET" -Details "Animation=$an"; Start-Sleep -Seconds 1; return }
             "Escape"    { return }
         }
     }
@@ -2562,7 +2744,7 @@ while ($true) {
             2 { Write-Log -Action "MENU_SELECT" -Details "Item=Обычный режим"; Stop-GameMode }
             3 { Write-Log -Action "MENU_SELECT" -Details "Item=Настройки"; Show-SettingsMenu }
             4 { Write-Log -Action "MENU_SELECT" -Details "Item=OPTIX"; Show-OptixMenu }
-            5 { Write-Log -Action "EXIT" -Details "Code=0 | User requested exit"; Stop-GameMode -Silent; Clear-Host; exit }
+            5 { Write-Log -Action "EXIT" -Details "Code=0 | User requested exit"; Stop-GameMode -Silent; Stop-BlacklistGuard; Clear-Host; exit }
         }
         if ($wasAction) { Clear-Host; $selectedIndex = 0 }
     }
