@@ -23,7 +23,7 @@
     "main": "Настройки",
     "customization": "Кастомизация интерфейса",
     "cleanup": "Очистка мусора",
-    "cleanup_lists": "Настройка очистки (Списки)",
+    "cleanup_lists": "Менеджер процессов (Blacklist / Whitelist)",
     "mini_games": "Мини-игры",
     "language": "Язык"
   },

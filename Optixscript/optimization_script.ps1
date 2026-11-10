@@ -956,6 +956,23 @@ function Show-Menu($selectedIndex, $menuItems) {
 
 # --- ФУНКЦИИ РЕЖИМОВ ---
 
+function Get-ProtectedProcessNames {
+    # Процессы, которые Игровой режим не должен трогать никогда:
+    # критичные для системы + whitelist + сам OPTIX и его консоль/оболочка.
+    # БАГФИКС: раньше powershell не был защищён, поэтому при активации игрового
+    # режима скрипт завершал сам себя (окно закрывалось, "активация ломалась").
+    $safety = @(
+        'powershell', 'pwsh', 'conhost', 'cmd', 'windowsterminal', 'openconsole',
+        'system', 'idle', 'services', 'wininit', 'explorer'
+    )
+    return @(
+        @($global:criticalProcessNames) + @($global:whitelist) + $safety |
+        Where-Object { $_ -and $_.ToString().Trim().Length -gt 0 } |
+        ForEach-Object { $_.ToString().Trim() } |
+        Select-Object -Unique
+    )
+}
+
 function Start-GameMode {
     Write-Log -Action "GAMEMODE_START" -Details "Entering Game Mode"
     Clear-Host; Write-Host "`n   [!] $(T('game_mode.activating'))" -ForegroundColor Yellow; Stop-GameMode -Silent
@@ -969,7 +986,9 @@ function Start-GameMode {
         if ($process) { $path = $process[0].Path; if ($path) { $sessionData.RestartableProcesses[$procName] = $path; Write-Host "   - $((T('game_mode.process_found')) -replace 'NAME', $procName)" -ForegroundColor Cyan } }
     }
     $sessionData | ConvertTo-Json -Depth 3 | Out-File $sessionFile -Encoding utf8
-    $allProcs = Get-Process | Where-Object { $_.Name -notin $global:whitelist -and $_.Name -notin $global:criticalProcessNames } | Select-Object -ExpandProperty Name -Unique
+    $protected = Get-ProtectedProcessNames
+    $selfPid = $PID
+    $allProcs = Get-Process | Where-Object { $_.Name -notin $protected -and $_.Id -ne $selfPid } | Select-Object -ExpandProperty Name -Unique
     if ($allProcs.Count -eq 0) { Write-Host "`n   [OK] $(T('game_mode.nothing_to_kill'))" -ForegroundColor Green }
     else {
         Write-Host "`n   [.] $(T('game_mode.killing_processes'))"
@@ -977,8 +996,8 @@ function Start-GameMode {
         foreach ($procName in $allProcs) { taskkill /F /T /IM "$procName.exe" *> $null 2>$null; $count++ }
         Write-Host "   - $((T('game_mode.terminated')) -replace 'COUNT', $count)" -ForegroundColor Green
         Write-Log -Action "GAMEMODE_KILL" -Details "Count=$count | Processes=$($allProcs -join ',')"
-        $scriptBlock = { param($critical, $whitelist) while ($true) { $live = Get-Process | Where-Object { $_.Name -notin $critical -and $_.Name -notin $whitelist } | Select-Object -ExpandProperty Name -Unique; foreach ($n in $live) { taskkill /F /T /IM "$n.exe" *> $null 2>$null }; Start-Sleep -Seconds 3 } }
-        Start-Job -ScriptBlock $scriptBlock -ArgumentList (,$global:criticalProcessNames), (,$global:whitelist) -Name $gameJobName | Out-Null
+        $scriptBlock = { param($protected, $hostPid) while ($true) { $live = Get-Process | Where-Object { $_.Name -notin $protected -and $_.Id -ne $PID -and $_.Id -ne $hostPid } | Select-Object -ExpandProperty Name -Unique; foreach ($n in $live) { taskkill /F /T /IM "$n.exe" *> $null 2>$null }; Start-Sleep -Seconds 3 } }
+        Start-Job -ScriptBlock $scriptBlock -ArgumentList (,$protected), $selfPid -Name $gameJobName | Out-Null
         Write-Host "   - $(T('game_mode.auto_tracking'))" -ForegroundColor Green
     }
     Write-Host "`n   [OK] $(T('game_mode.activated'))" -ForegroundColor Green
@@ -1212,7 +1231,7 @@ function Start-BlacklistGuard {
     if (-not $source) { return }
     # Не убиваем сам OPTIX/powershell и системную оболочку.
     $safety = @('powershell','pwsh','conhost','cmd','windowsterminal','openconsole','system','idle','services','wininit')
-    $list = @($source | Where-Object { $_ -and $_.Trim().Length -gt 0 -and $safety -notcontains $_.ToLowerInvariant() } | Select-Object -Unique)
+    $list = @($source | Where-Object { $_ -and $_.Trim().Length -gt 0 -and $safety -notcontains $_.ToLowerInvariant() -and @($global:whitelist) -notcontains $_ } | Select-Object -Unique)
     if ($list.Count -eq 0) { return }
     $selfPid = $PID
     foreach ($name in $list) {
@@ -1463,6 +1482,16 @@ function Show-SaveSubMenu {
                     Write-Host "`n$((T('process_manager.save_menu.success')) -replace 'FILENAME', (Split-Path $targetFile -Leaf))" -ForegroundColor Green
                     Write-Log -Action "BLACKLIST_KILL" -Details "Processes=$($global:blacklistGuard -join ',')"
                 } else {
+                    if ($targetFile -eq $whitelistFile) {
+                        # БАГФИКС: раньше whitelist применялся только после перезапуска OPTIX,
+                        # поэтому только что добавленный процесс всё равно закрывался.
+                        $global:whitelist = @(Get-Content $whitelistFile | Where-Object { $_ -notmatch '^\s*#' } | ForEach-Object { Normalize-ProcessName $_ } | Where-Object { $_ -ne '' })
+                        # "Никогда не трогать" сильнее blacklist: убираем эти процессы из сторожа.
+                        if (@($global:blacklistGuard).Count -gt 0) {
+                            $global:blacklistGuard = @($global:blacklistGuard | Where-Object { $global:whitelist -notcontains $_ })
+                            Start-BlacklistGuard -Processes $global:blacklistGuard
+                        }
+                    }
                     Write-Host "`n$((T('process_manager.save_menu.success')) -replace 'FILENAME', (Split-Path $targetFile -Leaf))" -ForegroundColor Green
                 }
                 Start-Sleep -Seconds 2; return

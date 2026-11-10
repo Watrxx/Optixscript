@@ -23,7 +23,7 @@
     "main": "Settings",
     "customization": "Interface Customization",
     "cleanup": "Junk Cleanup",
-    "cleanup_lists": "Cleanup Lists (Processes)",
+    "cleanup_lists": "Process Manager (Blacklist / Whitelist)",
     "mini_games": "Mini-games",
     "language": "Language"
   },
