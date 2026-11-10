@@ -24,6 +24,8 @@
     "customization": "Arayüz Özelleştirme",
     "cleanup": "Çöp Temizliği",
     "cleanup_lists": "Temizlik Listeleri (Süreçler)",
+    "blacklist": "Blacklist (kapat)",
+    "whitelist": "Whitelist (dokunma)",
     "mini_games": "Mini Oyunlar",
     "language": "Dil"
   },
@@ -181,6 +183,16 @@
       "error_critical": "HATA: Kritik süreç 'NAME''i sonlandırma listesine eklemeye çalışıyorsunuz. Bu eylem sistemi korumak için engellenmiştir.",
       "press_enter": "Dönmek için Enter'a basın..."
     }
+  },
+  "list_editor": {
+    "empty": "Liste boş. Süreç eklemek için [A] tuşuna bas.",
+    "add": "[A] Süreç ekle",
+    "remove": "[Del] Listeden kaldır",
+    "running": "çalışıyor",
+    "not_running": "çalışmıyor",
+    "removed": "Listeden kaldırıldı: NAME",
+    "added": "Eklenen süreçler: COUNT",
+    "add_selected": "[9] NAME listesine ekle"
   },
   "game_mode": {
     "activating": "Oyun Modu etkinleştiriliyor...",

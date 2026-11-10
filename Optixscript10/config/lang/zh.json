@@ -24,6 +24,8 @@
     "customization": "界面自定义",
     "cleanup": "垃圾清理",
     "cleanup_lists": "清理列表（进程）",
+    "blacklist": "黑名单（关闭）",
+    "whitelist": "白名单（不要动）",
     "mini_games": "迷你游戏",
     "language": "语言"
   },
@@ -181,6 +183,16 @@
       "error_critical": "错误：您试图将关键进程 'NAME' 添加到终止列表。此操作被阻止以保护系统。",
       "press_enter": "按Enter返回..."
     }
+  },
+  "list_editor": {
+    "empty": "列表为空。按 [A] 添加进程。",
+    "add": "[A] 添加进程",
+    "remove": "[Del] 从列表中移除",
+    "running": "正在运行",
+    "not_running": "未运行",
+    "removed": "已从列表移除：NAME",
+    "added": "已添加进程：COUNT",
+    "add_selected": "[9] 添加到 NAME"
   },
   "game_mode": {
     "activating": "正在激活游戏模式...",

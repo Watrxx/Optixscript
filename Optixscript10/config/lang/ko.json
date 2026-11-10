@@ -24,6 +24,8 @@
     "customization": "인터페이스 사용자 지정",
     "cleanup": "정리 ( junk )",
     "cleanup_lists": "정리 목록 (프로세스)",
+    "blacklist": "블랙리스트 (종료)",
+    "whitelist": "화이트리스트 (건드리지 않음)",
     "mini_games": "미니게임",
     "language": "언어"
   },
@@ -181,6 +183,16 @@
       "error_critical": "오류: 중요 프로세스 'NAME'을 종료 목록에 추가하려고 합니다. 이 작업은 시스템 보호를 위해 차단됩니다.",
       "press_enter": "Enter를 눌러 돌아가기..."
     }
+  },
+  "list_editor": {
+    "empty": "목록이 비어 있습니다. [A]를 눌러 프로세스를 추가하세요.",
+    "add": "[A] 프로세스 추가",
+    "remove": "[Del] 목록에서 제거",
+    "running": "실행 중",
+    "not_running": "실행 안 함",
+    "removed": "목록에서 제거됨: NAME",
+    "added": "추가된 프로세스: COUNT",
+    "add_selected": "[9] NAME에 추가"
   },
   "game_mode": {
     "activating": "게임 모드 활성화 중...",

@@ -1258,6 +1258,7 @@ function Stop-BlacklistGuard {
 }
 
 function Show-ProcessManager {
+    param([string]$TargetFile = "", [string]$TargetTitle = "")
     Clear-Host
     Write-Host "  $(T('process_manager.loading'))"
 
@@ -1294,7 +1295,7 @@ function Show-ProcessManager {
 
         $colorsLabel = T("process_manager.colors_legend")
         $controlsLabel = T("process_manager.controls")
-        $saveSelLabel = T("process_manager.save_selected")
+        $saveSelLabel = if ($TargetFile) { (T("list_editor.add_selected")) -replace 'NAME', $TargetTitle } else { T("process_manager.save_selected") }
         $exitLabel = T("process_manager.exit")
         $colorLinePlain = "+ " + $colorsLabel
         $controlsLine1 = ("+ " + $controlsLabel).PadRight($consoleWidth - 1) + "+"
@@ -1432,7 +1433,18 @@ function Show-ProcessManager {
                 if ($selected.Contains($proc.Name)) { $selected.Remove($proc.Name) }
                 else { $selected.Add($proc.Name) }
             }
-            "D9"        { if ($selected.Count -gt 0) { Show-SaveSubMenu -SelectedProcesses $selected.ToArray(); return } }
+            "D9"        {
+                if ($selected.Count -gt 0) {
+                    if ($TargetFile) {
+                        $addedCount = Add-ProcessesToList -Processes $selected.ToArray() -TargetFile $TargetFile
+                        Clear-Host
+                        Write-Host "`n   $((T('list_editor.added')) -replace 'COUNT', $addedCount)" -ForegroundColor Green
+                        Start-Sleep -Seconds 1
+                        return
+                    }
+                    Show-SaveSubMenu -SelectedProcesses $selected.ToArray(); return
+                }
+            }
             "Escape"    { return }
         }
     }
@@ -1469,32 +1481,150 @@ function Show-SaveSubMenu {
                         }
                     }
                 }
-                $existing = if (Test-Path $targetFile) { Get-Content $targetFile } else { @() }
-                $combined = ($existing + $SelectedProcesses) | Select-Object -Unique
-                $combined | Out-File $targetFile -Encoding utf8
-                # Blacklist = "завершить": применяем сразу и держим процессы завершёнными,
-                # пока работает OPTIX (перезапустившиеся задачи снова закрываются).
-                if ($targetFile -eq $blacklistFile) {
-                    $global:blacklist = @(Get-Content $blacklistFile | Where-Object { $_ -notmatch '^\s*#' } | ForEach-Object { Normalize-ProcessName $_ } | Where-Object { $_ -ne '' })
-                    # Запоминаем выбранное в этой сессии: именно эти задачи держим завершёнными.
-                    $global:blacklistGuard = @(@($global:blacklistGuard) + @($SelectedProcesses) | Where-Object { $_ } | Select-Object -Unique)
-                    Start-BlacklistGuard -Processes $global:blacklistGuard
-                    Write-Host "`n$((T('process_manager.save_menu.success')) -replace 'FILENAME', (Split-Path $targetFile -Leaf))" -ForegroundColor Green
-                    Write-Log -Action "BLACKLIST_KILL" -Details "Processes=$($global:blacklistGuard -join ',')"
-                } else {
-                    if ($targetFile -eq $whitelistFile) {
-                        # БАГФИКС: раньше whitelist применялся только после перезапуска OPTIX,
-                        # поэтому только что добавленный процесс всё равно закрывался.
-                        $global:whitelist = @(Get-Content $whitelistFile | Where-Object { $_ -notmatch '^\s*#' } | ForEach-Object { Normalize-ProcessName $_ } | Where-Object { $_ -ne '' })
-                        # "Никогда не трогать" сильнее blacklist: убираем эти процессы из сторожа.
-                        if (@($global:blacklistGuard).Count -gt 0) {
-                            $global:blacklistGuard = @($global:blacklistGuard | Where-Object { $global:whitelist -notcontains $_ })
-                            Start-BlacklistGuard -Processes $global:blacklistGuard
-                        }
-                    }
-                    Write-Host "`n$((T('process_manager.save_menu.success')) -replace 'FILENAME', (Split-Path $targetFile -Leaf))" -ForegroundColor Green
-                }
+                # Общая функция: пишет список в файл и сразу применяет изменения
+                # (blacklist — закрывает процессы, whitelist — обновляет защиту).
+                Add-ProcessesToList -Processes $SelectedProcesses -TargetFile $targetFile | Out-Null
+                Write-Host "`n$((T('process_manager.save_menu.success')) -replace 'FILENAME', (Split-Path $targetFile -Leaf))" -ForegroundColor Green
                 Start-Sleep -Seconds 2; return
+            }
+            "Escape"    { return }
+        }
+    }
+}
+
+# --- СПИСКИ ПРОЦЕССОВ (Blacklist / Whitelist) ---
+
+function Get-ListEntries {
+    param([string]$File)
+    if (-not (Test-Path $File)) { return @() }
+    return @(
+        Get-Content -LiteralPath $File -Encoding UTF8 |
+        Where-Object { $_ -notmatch '^\s*#' } |
+        ForEach-Object { Normalize-ProcessName $_ } |
+        Where-Object { $_ -ne '' }
+    )
+}
+
+function Set-ListEntries {
+    param([string]$File, [string[]]$Entries)
+    # Комментарии в начале файла сохраняем, меняем только сами процессы.
+    $comments = @()
+    if (Test-Path $File) {
+        $comments = @(Get-Content -LiteralPath $File -Encoding UTF8 | Where-Object { $_ -match '^\s*#' })
+    }
+    # Убираем повторы без учёта регистра (Windows не различает Notepad и notepad).
+    $seen = @{}
+    $unique = @()
+    foreach ($entry in @($Entries | Where-Object { $_ -and $_.Trim().Length -gt 0 } | ForEach-Object { Normalize-ProcessName $_.Trim() })) {
+        $key = $entry.ToLowerInvariant()
+        if (-not $seen.ContainsKey($key)) { $seen[$key] = $true; $unique += $entry }
+    }
+    $lines = @($comments) + $unique
+    if ($lines.Count -eq 0) {
+        Set-Content -LiteralPath $File -Value '' -Encoding UTF8
+    } else {
+        $lines | Out-File -FilePath $File -Encoding utf8
+    }
+}
+
+function Update-ListState {
+    param([string]$File, [string[]]$AddedToBlacklist = @())
+    if ($File -eq $whitelistFile) {
+        $global:whitelist = @(Get-ListEntries $whitelistFile)
+        # "Никогда не трогать" сильнее blacklist: убираем эти процессы из сторожа.
+        if (@($global:blacklistGuard).Count -gt 0) {
+            $global:blacklistGuard = @($global:blacklistGuard | Where-Object { $global:whitelist -notcontains $_ })
+            Start-BlacklistGuard -Processes $global:blacklistGuard
+        }
+    } elseif ($File -eq $blacklistFile) {
+        $global:blacklist = @(Get-ListEntries $blacklistFile)
+        # Добавленные процессы сразу закрываем; убранные — перестаём трогать.
+        $global:blacklistGuard = @(@($global:blacklistGuard) + @($AddedToBlacklist) | Where-Object { $_ } | Select-Object -Unique)
+        $global:blacklistGuard = @($global:blacklistGuard | Where-Object { $global:blacklist -contains $_ })
+        Start-BlacklistGuard -Processes $global:blacklistGuard
+    } elseif ($File -eq $restartableFile) {
+        $global:restartable = @(Get-ListEntries $restartableFile)
+    }
+}
+
+function Add-ProcessesToList {
+    param([string[]]$Processes, [string]$TargetFile)
+    $entries = @(Get-ListEntries $TargetFile)
+    $normalized = @($Processes | ForEach-Object { (Normalize-ProcessName $_).ToLowerInvariant() } | Where-Object { $_ -ne '' } | Select-Object -Unique)
+    $newOnes = @($normalized | Where-Object { $entries -notcontains $_ })
+    if ($newOnes.Count -gt 0) {
+        Set-ListEntries -File $TargetFile -Entries @($entries + $newOnes | Select-Object -Unique)
+    }
+    if ($TargetFile -eq $blacklistFile) {
+        Update-ListState -File $TargetFile -AddedToBlacklist $newOnes
+        if ($newOnes.Count -gt 0) { Write-Log -Action "BLACKLIST_KILL" -Details "Processes=$($global:blacklistGuard -join ',')" }
+    } else {
+        Update-ListState -File $TargetFile
+    }
+    return [int]$newOnes.Count
+}
+
+function Show-ListEditor {
+    param([string]$File, [string]$Title)
+    $selectedIndex = 0
+    $topIndex = 0
+    $status = ""
+    while ($true) {
+        $entries = @(Get-ListEntries $File)
+        if ($entries.Count -eq 0) { $selectedIndex = 0; $topIndex = 0 }
+        elseif ($selectedIndex -ge $entries.Count) { $selectedIndex = $entries.Count - 1 }
+        if ($selectedIndex -lt 0) { $selectedIndex = 0 }
+
+        $liveNames = @(Get-Process -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Name -Unique)
+        $listHeight = [Math]::Max(5, [Console]::WindowHeight - 8)
+        if ($selectedIndex -lt $topIndex) { $topIndex = $selectedIndex }
+        if ($selectedIndex -ge $topIndex + $listHeight) { $topIndex = $selectedIndex - $listHeight + 1 }
+        if ($topIndex -lt 0) { $topIndex = 0 }
+
+        Clear-Host
+        Write-Host "`n   $Title — $($entries.Count)" -ForegroundColor Cyan
+        if ($entries.Count -eq 0) {
+            Write-Host "`n   $(T('list_editor.empty'))" -ForegroundColor Gray
+        } else {
+            $last = [Math]::Min($entries.Count - 1, $topIndex + $listHeight - 1)
+            for ($i = $topIndex; $i -le $last; $i++) {
+                $name = $entries[$i]
+                $state = if ($liveNames -contains $name) { T('list_editor.running') } else { T('list_editor.not_running') }
+                $line = "  " + $(if ($i -eq $selectedIndex) { "> " } else { "  " }) + $name + "  ($state)"
+                if ($i -eq $selectedIndex) {
+                    Write-Host $line -ForegroundColor Black -BackgroundColor White
+                } else {
+                    Write-Host $line -ForegroundColor White
+                }
+            }
+        }
+        if ($status) { Write-Host "`n   $status" -ForegroundColor Green }
+        Write-Host "`n   $(T('list_editor.add'))   $(T('list_editor.remove'))   $(T('common.esc_to_return'))" -ForegroundColor Gray
+        $key = [Console]::ReadKey($true)
+        $status = ""
+
+        # [A] — добавить процессы (в русской раскладке это клавиша "ф").
+        $isAddKey = ($key.Key -eq [ConsoleKey]::A) -or (@('a', 'A', 'ф', 'Ф') -contains [string]$key.KeyChar)
+        if ($isAddKey) {
+            $before = @(Get-ListEntries $File)
+            Show-ProcessManager -TargetFile $File -TargetTitle $Title
+            $after = @(Get-ListEntries $File)
+            $added = @($after | Where-Object { $before -notcontains $_ })
+            if ($added.Count -gt 0) { $status = (T('list_editor.added')) -replace 'COUNT', $added.Count }
+            continue
+        }
+
+        switch ($key.Key) {
+            "UpArrow"   { if ($entries.Count -gt 0) { $selectedIndex = ($selectedIndex - 1 + $entries.Count) % $entries.Count } }
+            "DownArrow" { if ($entries.Count -gt 0) { $selectedIndex = ($selectedIndex + 1) % $entries.Count } }
+            "Delete"    {
+                if ($entries.Count -gt 0) {
+                    $removed = $entries[$selectedIndex]
+                    $left = @($entries | Where-Object { $_ -ne $removed })
+                    Set-ListEntries -File $File -Entries $left
+                    Update-ListState -File $File
+                    $status = (T('list_editor.removed')) -replace 'NAME', $removed
+                }
             }
             "Escape"    { return }
         }
@@ -2721,6 +2851,8 @@ function Show-SettingsMenu {
     $settingsMenuItems += T("settings.customization")
     $settingsMenuItems += T("settings.cleanup")
     $settingsMenuItems += T("settings.cleanup_lists")
+    $settingsMenuItems += T("settings.blacklist")
+    $settingsMenuItems += T("settings.whitelist")
     $settingsMenuItems += T("settings.mini_games")
     $settingsMenuItems += T("settings.language")
     $selectedIndex = 0
@@ -2741,8 +2873,10 @@ function Show-SettingsMenu {
                     0 { Show-CustomizationMenu }
                     1 { Clean-Junk }
                     2 { Show-ProcessManager }
-                    3 { Show-MiniGamesMenu }
-                    4 { Show-LanguageMenu }
+                    3 { Show-ListEditor -File $blacklistFile -Title (T('settings.blacklist')) }
+                    4 { Show-ListEditor -File $whitelistFile -Title (T('settings.whitelist')) }
+                    5 { Show-MiniGamesMenu }
+                    6 { Show-LanguageMenu }
                 }
                 Clear-Host
             }

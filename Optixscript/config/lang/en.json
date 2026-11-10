@@ -24,6 +24,8 @@
     "customization": "Interface Customization",
     "cleanup": "Junk Cleanup",
     "cleanup_lists": "Process Manager (Blacklist / Whitelist)",
+    "blacklist": "Blacklist (kill)",
+    "whitelist": "Whitelist (never touch)",
     "mini_games": "Mini-games",
     "language": "Language"
   },
@@ -190,6 +192,16 @@
       "error_critical": "ERROR: You are trying to add critical process 'NAME' to the kill list. This action is blocked to protect the system.",
       "press_enter": "Press Enter to return..."
     }
+  },
+  "list_editor": {
+    "empty": "The list is empty. Press [A] to add processes.",
+    "add": "[A] Add processes",
+    "remove": "[Del] Remove from list",
+    "running": "running",
+    "not_running": "not running",
+    "removed": "Removed from list: NAME",
+    "added": "Added processes: COUNT",
+    "add_selected": "[9] Add to NAME"
   },
   "game_mode": {
     "activating": "Activating Game Mode...",

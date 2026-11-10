@@ -24,6 +24,8 @@
     "customization": "Oberflächenanpassung",
     "cleanup": "Müllbereinigung",
     "cleanup_lists": "Bereinigungslisten (Prozesse)",
+    "blacklist": "Blacklist (beenden)",
+    "whitelist": "Whitelist (nie anfassen)",
     "mini_games": "Minispiele",
     "language": "Sprache"
   },
@@ -181,6 +183,16 @@
       "error_critical": "FEHLER: Sie versuchen den kritischen Prozess 'NAME' zur Beendigungsliste hinzuzufügen. Diese Aktion ist zum Schutz des Systems blockiert.",
       "press_enter": "Enter drücken zum Zurückkehren..."
     }
+  },
+  "list_editor": {
+    "empty": "Die Liste ist leer. Drücke [A], um Prozesse hinzuzufügen.",
+    "add": "[A] Prozesse hinzufügen",
+    "remove": "[Del] Aus der Liste entfernen",
+    "running": "läuft",
+    "not_running": "läuft nicht",
+    "removed": "Aus der Liste entfernt: NAME",
+    "added": "Hinzugefügte Prozesse: COUNT",
+    "add_selected": "[9] Zu NAME hinzufügen"
   },
   "game_mode": {
     "activating": "Spielmodus aktivieren...",

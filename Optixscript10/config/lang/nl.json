@@ -24,6 +24,8 @@
     "customization": "Interface aanpassing",
     "cleanup": "Troep opruimen",
     "cleanup_lists": "Opruimlijsten (Processen)",
+    "blacklist": "Blacklist (afsluiten)",
+    "whitelist": "Whitelist (nooit aanraken)",
     "mini_games": "Minigames",
     "language": "Taal"
   },
@@ -181,6 +183,16 @@
       "error_critical": "FOUT: U probeert kritiek proces 'NAME' toe te voegen aan de beëindigingslijst. Deze actie is geblokkeerd om het systeem te beschermen.",
       "press_enter": "Druk op Enter om terug te keren..."
     }
+  },
+  "list_editor": {
+    "empty": "De lijst is leeg. Druk op [A] om processen toe te voegen.",
+    "add": "[A] Processen toevoegen",
+    "remove": "[Del] Uit lijst verwijderen",
+    "running": "actief",
+    "not_running": "niet actief",
+    "removed": "Verwijderd uit lijst: NAME",
+    "added": "Toegevoegde processen: COUNT",
+    "add_selected": "[9] Toevoegen aan NAME"
   },
   "game_mode": {
     "activating": "Spelmodus activeren...",

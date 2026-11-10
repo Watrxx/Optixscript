@@ -24,6 +24,8 @@
     "customization": "インターフェースカスタマイズ",
     "cleanup": "ゴミファイル清理",
     "cleanup_lists": "清理リスト（プロセス）",
+    "blacklist": "ブラックリスト（終了）",
+    "whitelist": "ホワイトリスト（触れない）",
     "mini_games": "ミニゲーム",
     "language": "言語"
   },
@@ -181,6 +183,16 @@
       "error_critical": "エラー：重要なプロセス 'NAME' を終了リストに追加しようとしました。この操作はシステム保護のためにブロックされています。",
       "press_enter": "Enterを押して戻る..."
     }
+  },
+  "list_editor": {
+    "empty": "リストは空です。[A] を押してプロセスを追加してください。",
+    "add": "[A] プロセスを追加",
+    "remove": "[Del] リストから削除",
+    "running": "実行中",
+    "not_running": "停止中",
+    "removed": "リストから削除しました: NAME",
+    "added": "追加したプロセス: COUNT",
+    "add_selected": "[9] NAME に追加"
   },
   "game_mode": {
     "activating": "ゲームモードをアクティブ化中...",

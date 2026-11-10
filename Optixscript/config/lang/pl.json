@@ -24,6 +24,8 @@
     "customization": "Dostosowywanie interfejsu",
     "cleanup": "Czyszczenie śmieci",
     "cleanup_lists": "Listy czyszczenia (Procesy)",
+    "blacklist": "Blacklist (zamknij)",
+    "whitelist": "Whitelist (nie dotykaj)",
     "mini_games": "Mini-gry",
     "language": "Język"
   },
@@ -181,6 +183,16 @@
       "error_critical": "BŁĄD: Próbujesz dodać krytyczny proces 'NAME' do listy zakończenia. To działanie jest zablokowane w celu ochrony systemu.",
       "press_enter": "Naciśnij Enter, aby wrócić..."
     }
+  },
+  "list_editor": {
+    "empty": "Lista jest pusta. Naciśnij [A], aby dodać procesy.",
+    "add": "[A] Dodaj procesy",
+    "remove": "[Del] Usuń z listy",
+    "running": "uruchomiony",
+    "not_running": "nie uruchomiony",
+    "removed": "Usunięto z listy: NAME",
+    "added": "Dodane procesy: COUNT",
+    "add_selected": "[9] Dodaj do NAME"
   },
   "game_mode": {
     "activating": "Aktywacja Trybu Gry...",

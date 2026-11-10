@@ -24,6 +24,8 @@
     "customization": "Personnalisation de l'interface",
     "cleanup": "Nettoyage des fichiers temporaires",
     "cleanup_lists": "Listes de nettoyage (Processus)",
+    "blacklist": "Blacklist (fermer)",
+    "whitelist": "Whitelist (ne pas toucher)",
     "mini_games": "Mini-jeux",
     "language": "Langue"
   },
@@ -181,6 +183,16 @@
       "error_critical": "ERREUR : Vous essayez d'ajouter le processus critique 'NAME' à la liste de terminaison. Cette action est bloquée pour protéger le système.",
       "press_enter": "Appuyez sur Entrée pour revenir..."
     }
+  },
+  "list_editor": {
+    "empty": "La liste est vide. Appuie sur [A] pour ajouter des processus.",
+    "add": "[A] Ajouter des processus",
+    "remove": "[Del] Retirer de la liste",
+    "running": "en cours",
+    "not_running": "pas en cours",
+    "removed": "Retiré de la liste : NAME",
+    "added": "Processus ajoutés : COUNT",
+    "add_selected": "[9] Ajouter à NAME"
   },
   "game_mode": {
     "activating": "Activation du Mode Jeu...",
