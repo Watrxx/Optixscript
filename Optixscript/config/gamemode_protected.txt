@@ -1,0 +1,97 @@
+﻿# Этот файл содержит программы, которые Игровой режим НЕ закрывает.
+# Правила:
+#   1. Одна программа на строку (можно с .exe или без).
+#   2. Строки, начинающиеся с #, — это комментарии, их можно менять.
+#   3. Эти исключения действуют ТОЛЬКО в Игровом режиме.
+#   4. Сторож Blacklist по-прежнему закрывает эти программы, если они есть
+#      в blacklist.txt (кроме жёсткой защиты: система, Проводник, антивирусы).
+#   5. Игры определяются автоматически по папке установки, этот файл нужен
+#      для программ, которые не являются играми.
+
+# --- Оптимизаторы и чистильщики ---
+ccleaner
+ccleaner64
+advancedsystemcare
+driverbooster
+glaryutilities
+wisecare365
+auslogicsdiskdefrag
+auslogicsboostspeed
+systemninja
+bleachbit
+
+# --- Программы драйверов и оборудования ---
+nvcontainer
+nvdisplay.container
+nvdisplay.containerlocalsystem
+nvtelemetrycontainer
+nvidia share
+nvidiasettings
+radeonsoftware
+amdrsserv
+amdow
+igfxem
+igfxtray
+rtkauduservice64
+rtkngui64
+ravbg64
+logioptionsplus
+logioptionsplus_agent
+lghub
+lghub_agent
+razercentral
+razersynapse
+corsair.service
+icue
+msi afterburner
+rivatuner
+
+# --- Лаунчеры приложений и игр ---
+steam
+steamwebhelper
+epicgameslauncher
+battle.net
+galaxyclient
+origin
+ea.desktop
+ubisoftconnect
+ubisoftgamelauncher
+riotclientservices
+riotclientux
+playnite
+goggalaxy
+xboxapp
+gamingservices
+wargaminggamecenter
+wgc
+itch
+itchio
+heroic
+minecraftlauncher
+tlauncher
+paradoxlauncher
+rockstargameslauncher
+rockstargameslauncherhelper
+
+# --- Дополнительные системные процессы ---
+svchost
+fontdrvhost
+spoolsv
+dllhost
+taskmgr
+mmc
+regedit
+sihclient
+werfault
+werfaultsecure
+wermgr
+dismhost
+tiworker
+logonui
+lockapp
+searchindexer
+securityhealthsystray
+memory compression
+applicationframehost
+backgroundtaskhost
+useroobebroker

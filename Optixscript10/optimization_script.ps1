@@ -969,14 +969,136 @@ function Get-ProtectedProcessNames {
         'dwm', 'sihost', 'shellhost', 'searchhost', 'searchui',
         'startmenuexperiencehost', 'shellexperiencehost', 'textinputhost',
         'ctfmon', 'taskhostw', 'runtimebroker',
-        'winlogon', 'csrss', 'lsass', 'smss'
+        'winlogon', 'csrss', 'lsass', 'smss', 'svchost', 'fontdrvhost',
+        'dllhost', 'spoolsv', 'taskmgr', 'mmc', 'regedit', 'audiodg',
+        'searchindexer', 'sihclient', 'werfault', 'wermgr', 'dismhost',
+        'tiworker', 'logonui', 'lockapp', 'memory compression',
+        'applicationframehost', 'backgroundtaskhost', 'useroobebroker'
+    )
+    # Антивирусы и средства защиты Windows. Их нельзя закрывать никогда,
+    # даже если они окажутся в blacklist.
+    $antivirus = @(
+        'windefend', 'msmpeng', 'nissrv', 'securityhealthservice', 'securityhealthhost',
+        'securityhealthsystray', 'mpcmdrun', 'mpdefendercoreservice', 'smartscreen',
+        'avp', 'avpui', 'kavfs', 'kavfssvc', 'klnagent',
+        'ekrn', 'egui',
+        'avastui', 'avastsvc', 'aswidsagent', 'aswsnx', 'avgui', 'avgtray', 'avgsvc',
+        'bdagent', 'vsserv', 'bdservicehost', 'bdredline',
+        'nortonsecurity', 'nsservice', 'navapsvc', 'symantec',
+        'mbamservice', 'mbamtray', 'malwarebytes',
+        'drweb', 'dwengine', 'dwservice', 'drwebdc',
+        'avgnt', 'avguard', 'avira', 'avira.servicehost', 'avira.systray',
+        '360safe', '360tray', '360sd', 'zhudongfangyu',
+        'a2guard', 'a2service', 'emsisoft',
+        'sophoshealth', 'savservice', 'sophosfsx',
+        'webroot', 'wrssservice', 'wrsvc',
+        'trendmicro', 'ntrtscan', 'tmbmsrv'
     )
     return @(
-        @($global:criticalProcessNames) + @($global:whitelist) + $safety |
+        @($global:criticalProcessNames) + @($global:whitelist) + $safety + $antivirus |
         Where-Object { $_ -and $_.ToString().Trim().Length -gt 0 } |
         ForEach-Object { $_.ToString().Trim() } |
         Select-Object -Unique
     )
+}
+
+function Get-GameModeProtectedNames {
+    # Мягкие исключения Игрового режима (по умолчанию): оптимизаторы,
+    # программы драйверов, лаунчеры и дополнительные системные процессы.
+    # Список хранится в config\gamemode_protected.txt и его можно дополнять.
+    # Эти имена действуют ТОЛЬКО в Игровом режиме; сторож Blacklist
+    # по-прежнему закрывает их, если они есть в blacklist.
+    $file = "$configPath\gamemode_protected.txt"
+    $fromFile = @()
+    if (Test-Path $file) {
+        $fromFile = @(
+            Get-Content -LiteralPath $file -Encoding UTF8 |
+            Where-Object { $_ -notmatch '^\s*#' } |
+            ForEach-Object { Normalize-ProcessName $_ } |
+            Where-Object { $_ -and $_.Trim().Length -gt 0 }
+        )
+    }
+    $builtin = @(
+        # Оптимизаторы
+        'ccleaner', 'ccleaner64', 'advancedsystemcare', 'driverbooster',
+        'glaryutilities', 'wisecare365', 'auslogicsdiskdefrag',
+        'auslogicsboostspeed', 'systemninja', 'bleachbit',
+        # Программы драйверов и оборудования
+        'nvcontainer', 'nvdisplay.container', 'nvdisplay.containerlocalsystem',
+        'nvtelemetrycontainer', 'nvidia share', 'nvidiasettings',
+        'radeonsoftware', 'amdrsserv', 'amdow', 'igfxem', 'igfxtray',
+        'rtkauduservice64', 'rtkngui64', 'ravbg64',
+        'logioptionsplus', 'logioptionsplus_agent', 'lghub', 'lghub_agent',
+        'razercentral', 'razersynapse', 'corsair.service', 'icue',
+        'msi afterburner', 'rivatuner',
+        # Лаунчеры приложений и игр
+        'steam', 'steamwebhelper', 'epicgameslauncher', 'battle.net',
+        'galaxyclient', 'origin', 'ea.desktop', 'ubisoftconnect',
+        'ubisoftgamelauncher', 'riotclientservices', 'riotclientux',
+        'playnite', 'goggalaxy', 'xboxapp', 'gamingservices',
+        'wargaminggamecenter', 'wgc', 'itch', 'itchio', 'heroic',
+        'minecraftlauncher', 'tlauncher', 'paradoxlauncher',
+        'rockstargameslauncher', 'rockstargameslauncherhelper',
+        # Дополнительные системные процессы
+        'svchost', 'fontdrvhost', 'spoolsv', 'dllhost', 'taskmgr', 'mmc',
+        'regedit', 'sihclient', 'werfault', 'werfaultsecure', 'wermgr',
+        'dismhost', 'tiworker', 'logonui', 'lockapp', 'searchindexer',
+        'securityhealthsystray', 'memory compression'
+    )
+    # Если файл существует, он главный: пользователь может убрать из него
+    # любую строку. Встроенный список нужен только как запасной вариант.
+    if (Test-Path $file) { $builtin = @() }
+    return @(
+        @($fromFile) + @($builtin) |
+        Where-Object { $_ -and $_.ToString().Trim().Length -gt 0 } |
+        ForEach-Object { $_.ToString().Trim().ToLowerInvariant() } |
+        Select-Object -Unique
+    )
+}
+
+function Get-GameDetectionRules {
+    # Как Игровой режим узнаёт игру: по папке установки и по имени exe.
+    # Благодаря этому игра, запущенная уже после включения режима,
+    # тоже не закроется фоновым сторожем.
+    $markers = @(
+        '\steamapps\common\', '\epic games\', '\gog games\', '\gog galaxy\games\',
+        '\riot games\', '\ubisoft game launcher\games\', '\ubisoft connect games\',
+        '\ea games\', '\origin games\', '\xboxgames\', '\.minecraft\',
+        '\roblox\versions\', '\battle.net\games\', '\games\', '\rockstar games\',
+        '\bethesda.net launcher\games\', '\amazon games\', '\wargaming.net\'
+    )
+    $names = @(
+        'minecraft', 'javaw', 'robloxplayerbeta', 'robloxplayer',
+        'gta5', 'gtav', 'rdr2', 'cs2', 'csgo', 'valorant', 'leagueclient', 'dota2',
+        'fortniteclient-win64-shipping', 'r5apex', 'destiny2', 'warframe',
+        'pathofexile', 'witcher3', 'cyberpunk2077', 'eldenring', 'bg3', 'bg3_dx11',
+        'hogwartslegacy', 'starfield', 'fallout4', 'skyrimse', 'tesv', 'gmod',
+        'terraria', 'amongus', 'genshinimpact', 'yuanshen', 'starrail',
+        'zenlesszonezero', 'wutheringwaves', 'worldoftanks', 'wotblitz', 'crossout',
+        'escapefromtarkov', 'tslgame', 'farlight84', 'narakabladepoint', 'deltaforce',
+        'deadbydaylight', 'rocketleague', 'rainbowsix', 'rainbowsix_dx11',
+        'thefinals', 'marvelrivals', 'overwatch', 'helldivers2', 'palworld',
+        'sonsoftheforest', 'vrising', 'valheim', 'rustclient', 'dayz',
+        'arkascended', 'shootergame', 'conanexiles', 'newworld'
+    )
+    return @{ Markers = $markers; Names = $names }
+}
+
+function Test-IsGameProcess {
+    param($Process, [string[]]$Markers, [string[]]$Names)
+    if (-not $Process) { return $false }
+    $name = ''
+    if ($Process.Name) { $name = $Process.Name.ToLowerInvariant() }
+    if ($name -and ($Names -contains $name)) { return $true }
+    $path = $null
+    try { $path = $Process.Path } catch { }
+    if ($path) {
+        $lowerPath = $path.ToLowerInvariant()
+        foreach ($marker in $Markers) {
+            if ($lowerPath.Contains($marker)) { return $true }
+        }
+    }
+    return $false
 }
 
 function Start-GameMode {
@@ -992,9 +1114,19 @@ function Start-GameMode {
         if ($process) { $path = $process[0].Path; if ($path) { $sessionData.RestartableProcesses[$procName] = $path; Write-Host "   - $((T('game_mode.process_found')) -replace 'NAME', $procName)" -ForegroundColor Cyan } }
     }
     $sessionData | ConvertTo-Json -Depth 3 | Out-File $sessionFile -Encoding utf8
-    $protected = Get-ProtectedProcessNames
+    $protected = @(Get-ProtectedProcessNames | ForEach-Object { $_.ToLowerInvariant() })
+    $softProtected = @(Get-GameModeProtectedNames)
+    $gameRules = Get-GameDetectionRules
+    # В Игровом режиме не трогаем ни жёсткую защиту, ни мягкие исключения,
+    # ни игры (в том числе запущенные из Steam/Epic/GOG и т.п.).
+    $cannotKill = @($protected + $softProtected | Select-Object -Unique)
     $selfPid = $PID
-    $allProcs = Get-Process | Where-Object { $_.SessionId -ne 0 -and $_.Name -notin $protected -and $_.Id -ne $selfPid } | Select-Object -ExpandProperty Name -Unique
+    $allProcs = Get-Process | Where-Object {
+        $_.SessionId -ne 0 -and
+        $_.Id -ne $selfPid -and
+        $cannotKill -notcontains $_.Name.ToLowerInvariant() -and
+        -not (Test-IsGameProcess -Process $_ -Markers $gameRules.Markers -Names $gameRules.Names)
+    } | Select-Object -ExpandProperty Name -Unique
     if ($allProcs.Count -eq 0) { Write-Host "`n   [OK] $(T('game_mode.nothing_to_kill'))" -ForegroundColor Green }
     else {
         Write-Host "`n   [.] $(T('game_mode.killing_processes'))"
@@ -1002,8 +1134,29 @@ function Start-GameMode {
         foreach ($procName in $allProcs) { taskkill /F /T /IM "$procName.exe" *> $null 2>$null; $count++ }
         Write-Host "   - $((T('game_mode.terminated')) -replace 'COUNT', $count)" -ForegroundColor Green
         Write-Log -Action "GAMEMODE_KILL" -Details "Count=$count | Processes=$($allProcs -join ',')"
-        $scriptBlock = { param($protected, $hostPid) while ($true) { $live = Get-Process | Where-Object { $_.SessionId -ne 0 -and $_.Name -notin $protected -and $_.Id -ne $PID -and $_.Id -ne $hostPid } | Select-Object -ExpandProperty Name -Unique; foreach ($n in $live) { taskkill /F /T /IM "$n.exe" *> $null 2>$null }; Start-Sleep -Seconds 3 } }
-        Start-Job -ScriptBlock $scriptBlock -ArgumentList (,$protected), $selfPid -Name $gameJobName | Out-Null
+        $scriptBlock = {
+            param($protected, $hostPid, $markers, $names)
+            while ($true) {
+                $live = Get-Process | Where-Object {
+                    if ($_.SessionId -eq 0 -or $_.Id -eq $PID -or $_.Id -eq $hostPid) { return $false }
+                    $procName = $_.Name.ToLowerInvariant()
+                    if ($protected -contains $procName) { return $false }
+                    if ($names -contains $procName) { return $false }
+                    $procPath = $null
+                    try { $procPath = $_.Path } catch { }
+                    if ($procPath) {
+                        $lowerPath = $procPath.ToLowerInvariant()
+                        foreach ($marker in $markers) {
+                            if ($lowerPath.Contains($marker)) { return $false }
+                        }
+                    }
+                    return $true
+                } | Select-Object -ExpandProperty Name -Unique
+                foreach ($n in $live) { taskkill /F /T /IM "$n.exe" *> $null 2>$null }
+                Start-Sleep -Seconds 3
+            }
+        }
+        Start-Job -ScriptBlock $scriptBlock -ArgumentList $cannotKill, $selfPid, $gameRules.Markers, $gameRules.Names -Name $gameJobName | Out-Null
         Write-Host "   - $(T('game_mode.auto_tracking'))" -ForegroundColor Green
     }
     Write-Host "`n   [OK] $(T('game_mode.activated'))" -ForegroundColor Green
