@@ -957,13 +957,19 @@ function Show-Menu($selectedIndex, $menuItems) {
 # --- ФУНКЦИИ РЕЖИМОВ ---
 
 function Get-ProtectedProcessNames {
-    # Процессы, которые Игровой режим не должен трогать никогда:
-    # критичные для системы + whitelist + сам OPTIX и его консоль/оболочка.
+    # Процессы, которые Игровой режим и сторож Blacklist не должны трогать никогда:
+    # критичные для системы + whitelist + сам OPTIX, консоль и оболочка Windows.
     # БАГФИКС: раньше powershell не был защищён, поэтому при активации игрового
     # режима скрипт завершал сам себя (окно закрывалось, "активация ломалась").
+    # Проводник и оболочка (sihost, ShellHost, SearchHost) защищены жёстко:
+    # даже если они окажутся в blacklist, программа их не закроет.
     $safety = @(
         'powershell', 'pwsh', 'conhost', 'cmd', 'windowsterminal', 'openconsole',
-        'system', 'idle', 'services', 'wininit', 'explorer'
+        'system', 'idle', 'services', 'wininit', 'explorer',
+        'dwm', 'sihost', 'shellhost', 'searchhost', 'searchui',
+        'startmenuexperiencehost', 'shellexperiencehost', 'textinputhost',
+        'ctfmon', 'taskhostw', 'runtimebroker',
+        'winlogon', 'csrss', 'lsass', 'smss'
     )
     return @(
         @($global:criticalProcessNames) + @($global:whitelist) + $safety |
@@ -988,7 +994,7 @@ function Start-GameMode {
     $sessionData | ConvertTo-Json -Depth 3 | Out-File $sessionFile -Encoding utf8
     $protected = Get-ProtectedProcessNames
     $selfPid = $PID
-    $allProcs = Get-Process | Where-Object { $_.Name -notin $protected -and $_.Id -ne $selfPid } | Select-Object -ExpandProperty Name -Unique
+    $allProcs = Get-Process | Where-Object { $_.SessionId -ne 0 -and $_.Name -notin $protected -and $_.Id -ne $selfPid } | Select-Object -ExpandProperty Name -Unique
     if ($allProcs.Count -eq 0) { Write-Host "`n   [OK] $(T('game_mode.nothing_to_kill'))" -ForegroundColor Green }
     else {
         Write-Host "`n   [.] $(T('game_mode.killing_processes'))"
@@ -996,7 +1002,7 @@ function Start-GameMode {
         foreach ($procName in $allProcs) { taskkill /F /T /IM "$procName.exe" *> $null 2>$null; $count++ }
         Write-Host "   - $((T('game_mode.terminated')) -replace 'COUNT', $count)" -ForegroundColor Green
         Write-Log -Action "GAMEMODE_KILL" -Details "Count=$count | Processes=$($allProcs -join ',')"
-        $scriptBlock = { param($protected, $hostPid) while ($true) { $live = Get-Process | Where-Object { $_.Name -notin $protected -and $_.Id -ne $PID -and $_.Id -ne $hostPid } | Select-Object -ExpandProperty Name -Unique; foreach ($n in $live) { taskkill /F /T /IM "$n.exe" *> $null 2>$null }; Start-Sleep -Seconds 3 } }
+        $scriptBlock = { param($protected, $hostPid) while ($true) { $live = Get-Process | Where-Object { $_.SessionId -ne 0 -and $_.Name -notin $protected -and $_.Id -ne $PID -and $_.Id -ne $hostPid } | Select-Object -ExpandProperty Name -Unique; foreach ($n in $live) { taskkill /F /T /IM "$n.exe" *> $null 2>$null }; Start-Sleep -Seconds 3 } }
         Start-Job -ScriptBlock $scriptBlock -ArgumentList (,$protected), $selfPid -Name $gameJobName | Out-Null
         Write-Host "   - $(T('game_mode.auto_tracking'))" -ForegroundColor Green
     }
@@ -1229,9 +1235,10 @@ function Start-BlacklistGuard {
     if ($existing) { Stop-Job -Job $existing -ErrorAction SilentlyContinue; Remove-Job -Job $existing -Force -ErrorAction SilentlyContinue }
     $source = if ($Processes -and $Processes.Count -gt 0) { $Processes } else { @($global:blacklist) }
     if (-not $source) { return }
-    # Не убиваем сам OPTIX/powershell и системную оболочку.
-    $safety = @('powershell','pwsh','conhost','cmd','windowsterminal','openconsole','system','idle','services','wininit')
-    $list = @($source | Where-Object { $_ -and $_.Trim().Length -gt 0 -and $safety -notcontains $_.ToLowerInvariant() -and @($global:whitelist) -notcontains $_ } | Select-Object -Unique)
+    # Не убиваем сам OPTIX, Проводник, оболочку Windows и системные процессы.
+    # Get-ProtectedProcessNames уже включает whitelist и critical.txt.
+    $protected = @(Get-ProtectedProcessNames | ForEach-Object { $_.ToLowerInvariant() })
+    $list = @($source | Where-Object { $_ -and $_.Trim().Length -gt 0 -and $protected -notcontains $_.ToLowerInvariant() } | Select-Object -Unique)
     if ($list.Count -eq 0) { return }
     $selfPid = $PID
     foreach ($name in $list) {
