@@ -1631,6 +1631,37 @@ function Show-ListEditor {
     }
 }
 
+function Show-ProcessManagerMenu {
+    # Подменю «Менеджер процессов»: отдельные списки Blacklist и Whitelist.
+    $items = @(
+        (T('settings.blacklist')),
+        (T('settings.whitelist'))
+    )
+    $selectedIndex = 0
+    while ($true) {
+        Clear-Host
+        Write-Host "`n   $(T('settings.cleanup_lists')):`n" -ForegroundColor White
+        for ($i = 0; $i -lt $items.Length; $i++) {
+            $line = "  " + $(if ($i -eq $selectedIndex) { "> $($items[$i])" } else { "  $($items[$i])" })
+            Write-Host $line
+        }
+        Write-Host "`n   $(T('common.esc_to_return'))" -ForegroundColor Gray
+        $key = [Console]::ReadKey($true)
+        switch ($key.Key) {
+            "UpArrow"   { $selectedIndex = ($selectedIndex - 1 + $items.Length) % $items.Length }
+            "DownArrow" { $selectedIndex = ($selectedIndex + 1) % $items.Length }
+            "Enter"     {
+                switch ($selectedIndex) {
+                    0 { Show-ListEditor -File $blacklistFile -Title (T('settings.blacklist')) }
+                    1 { Show-ListEditor -File $whitelistFile -Title (T('settings.whitelist')) }
+                }
+                Clear-Host
+            }
+            "Escape"    { return }
+        }
+    }
+}
+
 function Show-ColorThemeMenu {
     $themeNames = $global:settings.color_palettes.psobject.properties.name
     $currentThemeIndex = [array]::IndexOf($themeNames, $global:settings.color_theme)
@@ -2851,8 +2882,6 @@ function Show-SettingsMenu {
     $settingsMenuItems += T("settings.customization")
     $settingsMenuItems += T("settings.cleanup")
     $settingsMenuItems += T("settings.cleanup_lists")
-    $settingsMenuItems += T("settings.blacklist")
-    $settingsMenuItems += T("settings.whitelist")
     $settingsMenuItems += T("settings.mini_games")
     $settingsMenuItems += T("settings.language")
     $selectedIndex = 0
@@ -2872,11 +2901,9 @@ function Show-SettingsMenu {
                 switch ($selectedIndex) {
                     0 { Show-CustomizationMenu }
                     1 { Clean-Junk }
-                    2 { Show-ProcessManager }
-                    3 { Show-ListEditor -File $blacklistFile -Title (T('settings.blacklist')) }
-                    4 { Show-ListEditor -File $whitelistFile -Title (T('settings.whitelist')) }
-                    5 { Show-MiniGamesMenu }
-                    6 { Show-LanguageMenu }
+                    2 { Show-ProcessManagerMenu }
+                    3 { Show-MiniGamesMenu }
+                    4 { Show-LanguageMenu }
                 }
                 Clear-Host
             }
